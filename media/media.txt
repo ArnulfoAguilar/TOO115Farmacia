@@ -1,0 +1,1 @@
+Es en donde se almacenaran todas las imágenes, documentos o archivos multimedia que pertenecen a nuestro proyecto. 

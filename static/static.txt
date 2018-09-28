@@ -1,0 +1,1 @@
+En este directorio se almacenan todos los archivos estáticos que servirá el proyecto (Archivos CSS, JavaScript u otros archivos que sean de naturaleza estatica, como el logo del sitio web). 

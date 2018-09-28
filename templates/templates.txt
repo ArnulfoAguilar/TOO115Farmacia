@@ -1,0 +1,1 @@
+Aquí se encuentran almacenadas todas las plantillas de sitio que tenemos para cada aplicación y para el proyecto. Por convención dentro de la carpeta templates hay que crear una carpeta con el mismo nombre de la app para que el Servidor de Django pueda detectar plantillas para la aplicación creada. 
