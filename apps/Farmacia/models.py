@@ -6,6 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
 class Descuento(models.Model):
@@ -114,12 +115,9 @@ class TipoOperacion(models.Model):
         db_table = 'TIPO_OPERACION'
 
 
-class User(models.Model):
-    id_user = models.IntegerField(db_column='ID_USER', primary_key=True)  # Field name made lowercase.
-    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA')  # Field name made lowercase.
+class User(AbstractUser):
+    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA',null=True)  # Field name made lowercase.
     id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='ID_ROL', blank=True, null=True)  # Field name made lowercase.
-    nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
-    apellido = models.TextField(db_column='APELLIDO')  # Field name made lowercase.
 
     class Meta:
         db_table = 'USER'

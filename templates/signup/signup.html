@@ -1,0 +1,13 @@
+{% extends "base/base.html" %}
+
+	{% block title %}
+		Sign Up
+	{% endblock title %}
+	{% block body %}
+
+		<form class="form-group" method="post">
+			{% csrf_token %}
+			{{form.as_p}}
+			<input class="btn btn-success" value="Registrarse" type="submit">
+		</form>
+	{% endblock body %}
