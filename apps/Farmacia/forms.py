@@ -16,12 +16,16 @@ class SignUpForm(UserCreationForm):
 	email = forms.EmailField(max_length=254, help_text='Ingrese un correo valido.')
 
 	class Meta:
-		"""docstring for Meta"""
 		model = User
 		
 		fields = (
-			'username',	'first_name', 'last_name', 'password1', 'password2',)
-	
+			'username',	
+			'first_name', 
+			'last_name', 
+			'password1', 
+			'password2',
+		)
+		
 	def __init__(self, *args, **kwargs):
 		super(SignUpForm, self).__init__(*args, *kwargs)
 		self.fields['username'].widget.attrs.update({'class':'form-control'}),
