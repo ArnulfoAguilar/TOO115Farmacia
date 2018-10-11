@@ -21,6 +21,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('farmacia/',include('apps.Farmacia.urls')),
+    # Url para el index de la pagina. (La vista esta en apps.Farmacia.views)
     path('', RedirectView.as_view(url='/farmacia/index/'), name='index'),
+    # Urls para la aplicacion Farmacia (Donde estara toda la logica de nuestro proyecto)
+    path('farmacia/',include('apps.Farmacia.urls')),
+    # Urls para la parte de los Usuarios (Donde manejaremos la parte de los usuarios)
+    path('usuarios/', include('apps.usuarios.urls')),
+    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
