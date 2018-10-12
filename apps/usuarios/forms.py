@@ -1,11 +1,11 @@
 # Nombre del archivo: forms.py
-# Direccion Fisica: TOO115Farmacia/apps/Farmacia/forms.py
-# Objetivo: Proveer los formularios del proyecto Farmacia
+# Direccion Fisica: TOO115Farmacia/apps/usuarios/forms.py
+# Objetivo: Proveer los formularios de la aplicacion usuarios
 from django import forms
 # Imports para crear el formulario de Registro de usuario
 from django.contrib.auth.forms import UserCreationForm
 
-# Formulario de creacion de usuario
+# Crear un objeto de tipo usuario
 from django.contrib.auth import get_user_model
 User = get_user_model()
 

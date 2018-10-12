@@ -52,7 +52,7 @@
                                            class="btn btn-default btn-flat">{% trans 'Change password' %}</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="{% block logout_url %}{% logout_url %}{% endblock %}" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Cerrar Sesion</a>
                                     </div>
                                 </li>
                                 {% endblock %}

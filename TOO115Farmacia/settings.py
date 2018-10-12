@@ -145,4 +145,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 AUTH_USER_MODEL = 'Farmacia.User'
 
 # URLS para redireccionamiento de 
-# LOGIN_REDIRECT_URL = '/farmacia/index/'
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '/usuarios/index/'

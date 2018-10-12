@@ -1,3 +1,8 @@
+# Nombre del archivo: models.py
+# Direccion Fisica: TOO115Farmacia/apps/Farmacia/urls.py
+# Objetivo: Proveer los modelos de la aplicacion Farmacia
+# Comentarios: NO TOCAR LOS MODELOS DE LA APLICACION Farmacia
+
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order

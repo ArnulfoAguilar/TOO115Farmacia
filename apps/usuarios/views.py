@@ -1,3 +1,6 @@
+# Nombre del archivo: views.py
+# Direccion Fisica: TOO115Farmacia/apps/usuarios/views.py
+# Objetivo: Proveer las vistas de la aplicacion usuarios y el index del sitio
 from django.shortcuts import render, redirect
 # Modulos para autenticacion e inicio de sesion
 from django.contrib.auth import login, authenticate
@@ -7,7 +10,17 @@ User = get_user_model()
 from .forms import SignUpForm
 # Import de Modelos
 
-# 
+# import de Views
+
+# Nombre de la vista: index
+# Direccion fisica: TOO115Farmacia/apps/usuarios/views.py
+# Objetivo: Proveer el indice del sistema informatico
+def index(request):
+	return render(request, 'index.html')
+
+# Nombre de la vista: sign_up
+# Direccion fisica: TOO115Farmacia/apps/usuarios/views.py
+# Objetivo: Proveer un formulario para que los usuarios puedan registrarse en el sistema
 def sign_up(request):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
@@ -23,5 +36,5 @@ def sign_up(request):
 			return redirect(index)
 	else:
 		form = SignUpForm()
-		# redirigir el formulario vacio para volver a llenar
-	return render(request, 'signup/signup.html', {'form': form})
+		# redirigir el formulario vacio para llenar los datos
+	return render(request, 'usuarios/signup.html', {'form': form})
