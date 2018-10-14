@@ -15,7 +15,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Descuento(models.Model):
-    id_descuento = models.IntegerField(db_column='ID_DESCUENTO', primary_key=True)  # Field name made lowercase.
+    id_descuento = models.AutoField(db_column='ID_DESCUENTO', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
     field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
     fecha_inicio = models.DateField(db_column='FECHA_INICIO')  # Field name made lowercase.
@@ -29,7 +29,7 @@ class Descuento(models.Model):
 
 
 class Devolucion(models.Model):
-    id_devolucion = models.IntegerField(db_column='ID_DEVOLUCION', primary_key=True)  # Field name made lowercase.
+    id_devolucion = models.AutoField(db_column='ID_DEVOLUCION', primary_key=True)  # Field name made lowercase.
     id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
     total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
     fecha_devolucion = models.DateField(db_column='FECHA_DEVOLUCION')  # Field name made lowercase.
@@ -39,7 +39,7 @@ class Devolucion(models.Model):
 
 
 class DevolucionMed(models.Model):
-    id_devolucion_det = models.IntegerField(db_column='ID_DEVOLUCION_DET', primary_key=True)  # Field name made lowercase.
+    id_devolucion_det = models.AutoField(db_column='ID_DEVOLUCION_DET', primary_key=True)  # Field name made lowercase.
     id_devolucion = models.ForeignKey(Devolucion, models.DO_NOTHING, db_column='ID_DEVOLUCION', blank=True, null=True)  # Field name made lowercase.
     cantidad = models.FloatField(db_column='CANTIDAD')  # Field name made lowercase.
     precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
@@ -50,7 +50,7 @@ class DevolucionMed(models.Model):
 
 
 class Empresa(models.Model):
-    id_empresa = models.IntegerField(db_column='ID_EMPRESA', primary_key=True)  # Field name made lowercase.
+    id_empresa = models.AutoField(db_column='ID_EMPRESA', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
 
     class Meta:
@@ -61,7 +61,7 @@ class Empresa(models.Model):
 
 
 class Kardex(models.Model):
-    id_transaccion = models.IntegerField(db_column='ID_TRANSACCION', primary_key=True)  # Field name made lowercase.
+    id_transaccion = models.AutoField(db_column='ID_TRANSACCION', primary_key=True)  # Field name made lowercase.
     id_ope = models.ForeignKey('TipoOperacion', models.DO_NOTHING, db_column='ID_OPE')  # Field name made lowercase.
     id_medic = models.IntegerField(db_column='ID_MEDIC')  # Field name made lowercase.
     cantidad = models.IntegerField(db_column='CANTIDAD')  # Field name made lowercase.
@@ -73,7 +73,7 @@ class Kardex(models.Model):
 
 
 class Lote(models.Model):
-    id_lote = models.IntegerField(db_column='ID_LOTE', primary_key=True)  # Field name made lowercase.
+    id_lote = models.AutoField(db_column='ID_LOTE', primary_key=True)  # Field name made lowercase.
     id_medicamento = models.ForeignKey('Medicamento', models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
     id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True, null=True)  # Field name made lowercase.
     fecha_compra = models.DateField(db_column='FECHA_COMPRA', blank=True, null=True)  # Field name made lowercase.
@@ -84,7 +84,7 @@ class Lote(models.Model):
 
 
 class Medicamento(models.Model):
-    id_medicamento = models.IntegerField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
+    id_medicamento = models.AutoField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
     id_presentacion = models.ForeignKey('Presentacion', models.DO_NOTHING, db_column='ID_PRESENTACION')  # Field name made lowercase.
     id_tipo = models.ForeignKey('TipoMedicamento', models.DO_NOTHING, db_column='ID_TIPO')  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
@@ -98,7 +98,7 @@ class Medicamento(models.Model):
 
 
 class Presentacion(models.Model):
-    id_presentacion = models.IntegerField(db_column='ID_PRESENTACION', primary_key=True)  # Field name made lowercase.
+    id_presentacion = models.AutoField(db_column='ID_PRESENTACION', primary_key=True)  # Field name made lowercase.
     presentacion = models.TextField(db_column='PRESENTACION')  # Field name made lowercase.
 
     class Meta:
@@ -131,7 +131,7 @@ class Rol(models.Model):
         return self.get_id_rol_display()
 
 class TipoMedicamento(models.Model):
-    id_tipo = models.IntegerField(db_column='ID_TIPO', primary_key=True)  # Field name made lowercase.
+    id_tipo = models.AutoField(db_column='ID_TIPO', primary_key=True)  # Field name made lowercase.
     tipo = models.TextField(db_column='TIPO')  # Field name made lowercase.
 
     class Meta:
@@ -142,7 +142,7 @@ class TipoMedicamento(models.Model):
 
 
 class TipoOperacion(models.Model):
-    id_ope = models.IntegerField(db_column='ID_OPE', primary_key=True)  # Field name made lowercase.
+    id_ope = models.AutoField(db_column='ID_OPE', primary_key=True)  # Field name made lowercase.
     operacion = models.CharField(db_column='OPERACION', max_length=1)  # Field name made lowercase.
 
     class Meta:
@@ -161,7 +161,7 @@ class User(AbstractUser):
 
 
 class Venta(models.Model):
-    id_venta = models.IntegerField(db_column='ID_VENTA', primary_key=True)  # Field name made lowercase.
+    id_venta = models.AutoField(db_column='ID_VENTA', primary_key=True)  # Field name made lowercase.
     id_user = models.ForeignKey(User, models.DO_NOTHING, db_column='ID_USER', blank=True, null=True)  # Field name made lowercase.
     field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
     fecha = models.DateField(db_column='FECHA')  # Field name made lowercase.
@@ -172,7 +172,7 @@ class Venta(models.Model):
 
 
 class VentaMed(models.Model):
-    id_venta_detalle = models.IntegerField(db_column='ID_VENTA_DETALLE', primary_key=True)  # Field name made lowercase.
+    id_venta_detalle = models.AutoField(db_column='ID_VENTA_DETALLE', primary_key=True)  # Field name made lowercase.
     id_venta = models.ForeignKey(Venta, models.DO_NOTHING, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
     id_medicamento = models.ForeignKey(Medicamento, models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
     id_descuento = models.ForeignKey(Descuento, models.DO_NOTHING, db_column='ID_DESCUENTO', blank=True, null=True)  # Field name made lowercase.
