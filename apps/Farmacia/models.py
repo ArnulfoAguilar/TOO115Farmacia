@@ -24,6 +24,9 @@ class Descuento(models.Model):
     class Meta:
         db_table = 'DESCUENTO'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Devolucion(models.Model):
     id_devolucion = models.IntegerField(db_column='ID_DEVOLUCION', primary_key=True)  # Field name made lowercase.
@@ -52,6 +55,9 @@ class Empresa(models.Model):
 
     class Meta:
         db_table = 'EMPRESA'
+
+    def __str__(self):
+        return self.nombre
 
 
 class Kardex(models.Model):
@@ -87,6 +93,9 @@ class Medicamento(models.Model):
     class Meta:
         db_table = 'MEDICAMENTO'
 
+    def __str__(self):
+        return self.nombre
+
 
 class Presentacion(models.Model):
     id_presentacion = models.IntegerField(db_column='ID_PRESENTACION', primary_key=True)  # Field name made lowercase.
@@ -95,14 +104,31 @@ class Presentacion(models.Model):
     class Meta:
         db_table = 'PRESENTACION'
 
+    def __str__(self):
+        return self.presentacion
+
 
 class Rol(models.Model):
-    id_rol = models.IntegerField(db_column='ID_ROL', primary_key=True)  # Field name made lowercase.
-    rol = models.TextField(db_column='ROL')  # Field name made lowercase.
+    '''Roles Manejados por el sistema: Estos roles seran los que utilizara el sistema para todos aquellos que no sean
+    administradores del sistema informatico (superuser)'''
+    ADMIN = 1
+    GERENTE = 2
+    VENDEDOR = 3
+    BODEGUERO = 4
+    ROL_CHOICES = (
+        (ADMIN, 'Administrador'),
+        (GERENTE, 'Gerente'),
+        (VENDEDOR, 'Vendedor'),
+        (BODEGUERO, 'Bodeguero'),
+        )
+
+    id_rol = models.PositiveSmallIntegerField(choices=ROL_CHOICES, primary_key=True)
 
     class Meta:
         db_table = 'ROL'
 
+    def __str__(self):
+        return self.get_id_rol_display()
 
 class TipoMedicamento(models.Model):
     id_tipo = models.IntegerField(db_column='ID_TIPO', primary_key=True)  # Field name made lowercase.
@@ -110,6 +136,9 @@ class TipoMedicamento(models.Model):
 
     class Meta:
         db_table = 'TIPO_MEDICAMENTO'
+
+    def __str__(self):
+        return self.tipo
 
 
 class TipoOperacion(models.Model):
@@ -119,9 +148,12 @@ class TipoOperacion(models.Model):
     class Meta:
         db_table = 'TIPO_OPERACION'
 
+    def __str__(self):
+        return self.operacion
+
 
 class User(AbstractUser):
-    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA',null=True)  # Field name made lowercase.
+    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True,null=True)  # Field name made lowercase.
     id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='ID_ROL', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
