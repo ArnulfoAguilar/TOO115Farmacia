@@ -82,9 +82,9 @@ WSGI_APPLICATION = 'TOO115Farmacia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'too',
-        'USER': 'too',
-        'PASSWORD': 'too',
+        'NAME': 'too1',
+        'USER': 'root',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {
