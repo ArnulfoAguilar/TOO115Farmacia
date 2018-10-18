@@ -16,9 +16,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    # Urls para el sitio de Administracion de Django
     path('admin/', admin.site.urls),
+    # Url para el index de la pagina. (La vista esta en apps.usuarios.views)
+    path('', RedirectView.as_view(url='/usuarios/index/'), name='index'),
+    # Urls para la aplicacion Farmacia (Donde estara toda la logica de nuestro proyecto)
     path('farmacia/',include('apps.Farmacia.urls')),
-    path('', RedirectView.as_view(url='/farmacia/index/'), name='index'),
-]
+    # Urls para la parte de los Usuarios (Donde manejaremos la parte de los usuarios)
+    path('usuarios/', include('apps.usuarios.urls')),
+    
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

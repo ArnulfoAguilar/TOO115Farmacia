@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	Inicio de Sesion
+{% endblock title %}
+
+{% block content %}
+	<form action='' method="post">
+		{% csrf_token %}
+		<h3 class="text-center">Iniciar Sesion</h3>
+		<div class="form-group">			
+			<label class="col-md-offset-4 col-md-2">{{form.username.label}}: </label>
+			{{form.username}}<br>
+		</div>
+		<div class="form-group">
+			<label class="col-md-offset-4 col-md-2">{{form.password.label}}: </label>
+			{{form.password}}<br>
+		</div>
+		<div class="col-md-offset-4 col-md-2">
+			<input type="submit" value="Iniciar Sesion">			
+		</div>
+	</form>
+	<br><br><br>
+{% endblock content %}
