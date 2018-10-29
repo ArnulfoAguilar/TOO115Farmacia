@@ -1,5 +1,4 @@
 Django==2.1.2
-django-adminlte-templates==2.1.2.0
 django-adminlte2==0.4.1
 mysqlclient==1.3.13
 pytz==2018.5
