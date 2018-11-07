@@ -26,12 +26,12 @@
             {% block nav_links %}
                 <li>
                     <a href="#">
-                        <i class="fa fa-dashboard"></i> <span>Zelda de Ejemplo</span>
+                        <i class="fa fa-home"></i> <span>Pagina Principal</span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-group"></i> <span>Sub menu</span>
+                        <i class="fa fa-medkit"></i> <span>Gestion de Medicamentos</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -39,11 +39,33 @@
                     <ul class="treeview-menu">
                         <li>
                             <a href="#">
-                                <i class="fa fa-user"></i> Otro Zelda
+                                <i class="fa fa-hospital-o"></i> Medicamentos
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li>
+                            <a href="{% url 'tipo_medicamentos_list'  %}">
+                                <i class="fa fa-list"></i> Tipos de Medicamentos
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-group"></i> <span>Inventario</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-info-circle"></i> Kardex de Medicamentos
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
             {% endblock nav_links %}
             {% endblock nav_links_outer %}
         </ul>
