@@ -146,4 +146,4 @@ AUTH_USER_MODEL = 'Farmacia.User'
 
 # URLS para redireccionamiento de 
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/usuarios/index/'
+LOGIN_REDIRECT_URL = '/farmacia/'

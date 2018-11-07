@@ -7,7 +7,8 @@ from . import views
 
 urlpatterns = [
     # Pendiente index de farmacia (kendalalfonso37)
-
+    path("", views.FarmaciaIndex.as_view(), name="farmacia_index"),
+    
     # URLS Para los Tipos de Medicamentos
     # Autor: Kendal Sosa (kendalalfonso37)
     # Listar Tipos de Medicamentos

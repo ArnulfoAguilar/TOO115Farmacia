@@ -14,6 +14,11 @@ from .forms import TipoMedicamentoForm
 from .models import TipoMedicamento
 # Create your views here.
 
+# Farmacia Template View
+class FarmaciaIndex(TemplateView):
+    template_name = "farmacia/farmacia.html"
+
+
 # Vistas para el CRUD de Tipos de Medicamentos
 # Acciones: Crear, Actualizar, Eliminar, Listar
 # Autor: Kendal Sosa (kendalalfonso37)
