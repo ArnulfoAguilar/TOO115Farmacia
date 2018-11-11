@@ -1,0 +1,83 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Medicamentos
+{% endblock title %}
+
+{% block page_name %}
+Lista de Medicamentos
+{% endblock page_name  %} 
+
+{% block page_description %}
+Puede gestionar los medicamentos registrados aqui
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li class="active"><a>Medicamentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <a href="{% url 'medicamento_create' %}" class="btn btn-info pull-right">Crear Nuevo Medicamento</a><br><br>
+        <div class="table-responsive">
+        {% if medicamentos %}
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col">Nombre</th>
+                        <th class="col">Precio</th>
+                        <th class="col">Presentacion</th>
+                        <th class="col">Tipo</th>
+                        <th class="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for medicamento in medicamentos %}
+                    <tr>
+                        <td>{{medicamento.nombre}}</td>
+                        <td>{{medicamento.precio|floatformat:"2"}}</td>
+                        <td>{{medicamento.id_presentacion}}</td>
+                        <td>{{medicamento.id_tipo}}</td>                        
+                        <td>
+                            <a class="btn btn-success" href="{% url 'medicamento_detail' medicamento.id_medicamento %}" role="button">Detalles</a> &nbsp&nbsp 
+                            <a class="btn btn-primary" href="{% url 'medicamento_update' medicamento.id_medicamento %}" role="button">Editar</a> &nbsp&nbsp 
+                            <a class="btn btn-danger" href="{% url 'medicamento_delete' medicamento.id_medicamento %}" role="button">Eliminar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>No hay registros de Medicamentos en estos momentos</h3>
+        {% endif %}    
+        </div>
+    </div>
+    
+    {% if is_paginated %}
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+        {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+    {% endif %}
+</div>
+{% endblock content %}

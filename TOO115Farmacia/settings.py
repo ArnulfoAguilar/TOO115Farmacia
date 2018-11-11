@@ -122,9 +122,12 @@ TIME_ZONE = 'America/El_Salvador'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
+
+# Formato de Numero (Cambiado L10N a FALSE)
+USE_THOUSAND_SEPARATOR = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -132,8 +135,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'media'),
+    )
 
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Nuevo modelo Usuario a utilizar
+AUTH_USER_MODEL = 'Farmacia.User'
+
+# URLS para redireccionamiento de 
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '/farmacia/'

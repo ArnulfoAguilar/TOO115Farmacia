@@ -1,0 +1,41 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Crear nuevo Tipo de Medicamento
+{% endblock title %}
+
+{% block page_name %}
+Crear nuevo Tipo de Medicamento
+{% endblock page_name  %} 
+
+{% block page_description %}
+Cree una nueva categoria de tipo de medicamento
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'tipo_medicamentos_list' %}">Tipo de Medicamentos</a></li>
+        <li class="active"><a>Crear Tipo de Medicamentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6"><br><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.tipo.errors}}
+                <label for="" class="">{{form.tipo.label}}</label>
+                {{form.tipo}}
+                
+                <br>
+                <input class="btn btn-success col-md-5" type="submit" value="Crear"/> 
+                <a href="{% url 'tipo_medicamentos_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>
+        </div>
+    </div>    
+</div>
+{% endblock content %}
