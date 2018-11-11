@@ -92,6 +92,7 @@ class Medicamento(models.Model):
 
     class Meta:
         db_table = 'MEDICAMENTO'
+        ordering = ['id_medicamento'] # Para que funcione el paginado aplicar un orden por defecto
 
     def __str__(self):
         return self.nombre
