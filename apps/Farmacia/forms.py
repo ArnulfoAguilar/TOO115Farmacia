@@ -32,5 +32,5 @@ class MedicamentoForm(forms.ModelForm):
             'id_presentacion': forms.Select(choices=Presentacion.objects.all(), attrs={"class": "form-control", "required": True}),
             'id_tipo': forms.Select(choices=TipoMedicamento.objects.all(), attrs={"class": "form-control", "required": True}),
             'nombre': forms.TextInput(attrs={"class": "form-control", "required": True}),
-            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'xx,xx', 'value': '0', "type": "number", "min": 0})
+            'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0.00', 'value': '0', "type": "number", "min": 0, "step":".01", "lang": "en"})
         }
