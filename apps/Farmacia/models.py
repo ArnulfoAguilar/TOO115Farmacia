@@ -88,7 +88,7 @@ class Medicamento(models.Model):
     id_presentacion = models.ForeignKey('Presentacion', models.DO_NOTHING, db_column='ID_PRESENTACION')  # Field name made lowercase.
     id_tipo = models.ForeignKey('TipoMedicamento', models.DO_NOTHING, db_column='ID_TIPO')  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
-    precio = models.FloatField(db_column='PRECIO')  # Field name made lowercase.
+    precio = models.FloatField(db_column='PRECIO', default=0)  # Field name made lowercase.
 
     class Meta:
         db_table = 'MEDICAMENTO'

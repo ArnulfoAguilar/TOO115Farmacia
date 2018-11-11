@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Detalles de Medicamento
+{% endblock title %}
+
+{% block page_name %}
+Detalles de Medicamento
+{% endblock page_name  %} 
+
+{% block page_description %}
+Puede ver detalles del medicamento seleccionado
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'medicamento_list' %}">Medicamentos</a></li>
+        <li><a>Detalles de Medicamento</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Nombre del Medicamento</th>
+                            <td>{{medicamento.nombre}}</td>
+                        </tr>
+                        <tr>
+                            <th>Precio</th>
+                            <td>{{medicamento.precio}}</td>
+                        </tr>
+                        <tr>
+                            <th>Presentacion</th>
+                            <td>{{medicamento.id_presentacion}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo</th>
+                            <td>{{medicamento.id_tipo}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="{% url 'medicamento_list' %}" class="btn btn-info">Volver al Listado</a><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -9,9 +9,9 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Import de Formularios
-from .forms import TipoMedicamentoForm
+from .forms import TipoMedicamentoForm, MedicamentoForm
 # Import de Modelos
-from .models import TipoMedicamento
+from .models import TipoMedicamento, Medicamento
 # Create your views here.
 
 # Farmacia Template View
@@ -47,3 +47,35 @@ class TipoMedicamentoDelete(DeleteView):
     context_object_name = "tipo_medicamentos"
 
 
+# Vistas para el CRUD de Medicamentos
+# Acciones: Crear, Actualizar, Eliminar, Listar, Detalles
+# Autor: Kendal Sosa (kendalalfonso37)
+
+class MedicamentoList(ListView):
+    model = Medicamento
+    template_name = "medicamento/medicamento_list.html"
+    context_object_name = "medicamentos"
+    paginate_by = 10
+
+class MedicamentoDetail(DetailView):
+    model = Medicamento
+    template_name = "medicamento/medicamento_detail.html"
+    context_object_name = "medicamento"
+
+class MedicamentoCreate(CreateView):
+    model = Medicamento
+    form_class = MedicamentoForm
+    success_url = reverse_lazy("medicamento_list")
+    template_name = "medicamento/medicamento_new.html"
+
+class MedicamentoUpdate(UpdateView):
+    model = Medicamento
+    form_class = MedicamentoForm
+    success_url = reverse_lazy("medicamento_list")
+    template_name = "medicamento/medicamento_update.html"
+
+class MedicamentoDelete(DeleteView):
+    model = Medicamento
+    success_url = reverse_lazy("medicamento_list")
+    template_name = "medicamento/medicamento_delete.html"
+    context_object_name = "medicamento"
