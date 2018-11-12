@@ -25,8 +25,10 @@ urlpatterns = [
     # Url para el index de la pagina. (La vista esta en apps.usuarios.views)
     path('', RedirectView.as_view(url='/usuarios/index/'), name='index'),
     # Urls para la aplicacion Farmacia (Donde estara toda la logica de nuestro proyecto)
-    path('farmacia/',include('apps.Farmacia.urls')),
+    #path('farmacia/',include('apps.Farmacia.urls')),
     # Urls para la parte de los Usuarios (Donde manejaremos la parte de los usuarios)
     path('usuarios/', include('apps.usuarios.urls')),
+    path('farmacia/', include('apps.Farmacia.urls')),
     
+
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

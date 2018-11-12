@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	Ingresar Lote
+{% endblock title %}
+
+{% block content %}
+<div class="col-md-offset-3">
+    <h2> Comprar Lote de Medicamentos</h2>
+</div>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-6"><br><br>
+                <form action="" method="POST">
+                    {% csrf_token %} 
+                    
+                        <p><b>{{ form.id_medicamento.label}}</b></p>
+                            {{ form.id_medicamento}}
+                           <br>
+                        <p><b>{{ form.id_empresa.label}}</b></p>
+                            {{ form.id_empresa}}
+                            <br>
+                            {{ form.fecha_compra.errors}}
+                        <p><b>{{ form.fecha_compra.label}}</b></p>
+                            {{ form.fecha_compra}}
+                            <br>
+                        <p><b>{{ form.cantidad.label}}</b></p>
+                            {{ form.cantidad}}   
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div class="col-md-offset-4">
+                        <input class="btn btn-success col-md-3" value="Aceptar" type="submit">
+                        <a href="{% url 'lote_List' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+                    </div>
+                </form>
+                </div>
+            </div>    
+    </div>
+{% endblock content %}

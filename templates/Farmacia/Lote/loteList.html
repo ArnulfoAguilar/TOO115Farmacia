@@ -1,0 +1,49 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	Ingresar Lote
+{% endblock title %}
+
+{% block content %}
+<div class="col-md-offset-3">
+    <h2>Lista de Compras</h2>
+</div>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10"><br><br>
+                <a href="{% url 'lote_create' %}" class="btn btn-info pull-right col-md-offset-6">Comprar Lote</a><br><br>
+        <div class="table-responsive">
+        {% if lotes %}
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th class="col">Identificador</th>
+                        <th class="col">Empresa</th>
+                        <th class="col">Presentacion</th>
+                        <th class="col">Fecha de compra</th>
+                        <th class="col">Cantidad</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                {% for lote in lotes %}
+                    <tr>
+                        <td>{{lote.id_lote}}</td>
+                        <td>{{lote.id_empresa}}</td>
+                        <td>{{lote.id_medicamento}}</td>
+                        <td>{{lote.fecha_compra}}</td>                        
+                        <td> {{lote.cantidad}}                       
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h3>No hay registros de lotes en estos momentos</h3>
+        {% endif %}    
+        </div>
+    </div>
+                </div>
+            </div>    
+    </div>
+{% endblock content %}

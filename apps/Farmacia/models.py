@@ -73,6 +73,10 @@ class Kardex(models.Model):
 
 
 class Lote(models.Model):
+    import datetime
+    
+    now = datetime.datetime
+
     id_lote = models.AutoField(db_column='ID_LOTE', primary_key=True)  # Field name made lowercase.
     id_medicamento = models.ForeignKey('Medicamento', models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
     id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True, null=True)  # Field name made lowercase.
