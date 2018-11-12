@@ -1,0 +1,45 @@
+{% extends "base/base.html" %} 
+<!-- HEREDAMOS DEL ARCHIVO base.html PARA NO REPETIR CODIGO -->
+
+<!--TITULO DE LA PAGINA-->
+{% block title %} 
+Crear nueva Presentacion de Medicamento
+{% endblock title %}
+
+<!--NOMBRE DE LA PAGINA-->
+{% block page_name %}
+Crear nueva Presentacion de Medicamento
+{% endblock page_name  %} 
+
+<!--BREVE DESCRIPCION DE LA PAGINA-->
+{% block page_description %}
+Cree una nueva presentacion para el medicamento
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'presentacion_list' %}">Presentacion  de Medicamentos</a></li>
+        <li class="active"><a>Crear Presentacion de Medicamentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6"><br><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{form.presentacion.errors}}
+                <label for="" class="">{{form.presentacion.label}}</label>
+                {{form.presentacion}}
+                
+                <br>
+                <input class="btn btn-success col-md-5" type="submit" value="Crear Nueva Presentacion de Medicamento"/> 
+                <a href="{% url 'presentacion_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>
+        </div>
+    </div>    
+</div>
+{% endblock content %}

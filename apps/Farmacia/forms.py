@@ -5,8 +5,10 @@ from django import forms
 
 # Import de Modelos
 from .models import TipoMedicamento
+from .models import Presentacion
 
-# Crear Formularios aqui
+# Crear Formularios aqui-------------------------------------------------------------------
+#Formulario para los TIPOS DE MEDICAMENTOS  ###############################################
 class TipoMedicamentoForm(forms.ModelForm):
     class Meta():
         model = TipoMedicamento
@@ -16,4 +18,16 @@ class TipoMedicamentoForm(forms.ModelForm):
         }
         widgets = {
             'tipo': forms.TextInput(attrs={"class": "form-control", "required": True})
+        }
+
+# formulario  para las PRESENTACIONES DE MEDICAMENTOS    ##################################################
+class PresentacionForm(forms.ModelForm):
+    class Meta():
+        model = Presentacion
+        fields = ['presentacion',]
+        labels = {
+            'presentacion': "Ingrese la Presentacion del Medicamento:"
+        }
+        widgets = {
+            'presentacion': forms.TextInput(attrs={"class": "form-control", "required": True})
         }

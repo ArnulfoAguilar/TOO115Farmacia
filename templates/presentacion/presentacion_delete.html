@@ -1,0 +1,43 @@
+{% extends "base/base.html" %}
+<!-- HEREDAMOS DEL ARCHIVO base.html PARA NO REPETIR CODIGO -->
+
+<!--TITULO DE LA PAGINA-->
+{% block title %}
+Eliminar Presentacion de Medicamento
+{% endblock title %}
+
+<!--NOMBRE DE LA PAGINA-->
+{% block page_name %}
+Eliminar Presentacion de Medicamento
+{% endblock page_name  %} 
+
+<!--BREVE DESCRIPCION DE LA PAGINA-->
+{% block page_description %}
+Eliminar el Presentacion de Medicamento seleccionado
+{% endblock page_description %}
+
+<!--MUESTRA LA  JERARQUIA DE CONTENIDOS AYUDANDO A LA NAVEGACION CON ENLACES-->
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'presentacion_list' %}" >Presentacion de Medicamentos</a></li>
+        <li class="active"><a>Eliminar Presentacion de Medicamentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <br><br><br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3 for="" class="text-warning">Esta seguro que desea eliminar la Presentacion de Medicamento: {{presentacion.presentacion}} ? <span class="text-danger" >(Esta Accion no se puede deshacer)</span></h3><br><br>
+                <input type="submit" class="btn btn-danger col-md-5" value="Eliminar">
+                <a href="{% url 'presentacion_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>   
+        </div>
+    </div>
+</div>
+{% endblock content %}
