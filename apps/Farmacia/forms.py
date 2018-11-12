@@ -6,7 +6,8 @@ from django import forms
 # Import de Modelos
 from .models import TipoMedicamento, Medicamento, Presentacion
 
-# Crear Formularios aqui
+# Crear Formularios aqui-------------------------------------------------------------------
+#Formulario para los TIPOS DE MEDICAMENTOS  ###############################################
 class TipoMedicamentoForm(forms.ModelForm):
     class Meta():
         model = TipoMedicamento
@@ -33,4 +34,16 @@ class MedicamentoForm(forms.ModelForm):
             'id_tipo': forms.Select(choices=TipoMedicamento.objects.all(), attrs={"class": "form-control", "required": True}),
             'nombre': forms.TextInput(attrs={"class": "form-control", "required": True}),
             'precio': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '0.00', 'value': '0', "type": "number", "min": 0, "step":".01", "lang": "en"})
+        }
+
+# formulario  para las PRESENTACIONES DE MEDICAMENTOS    ##################################################
+class PresentacionForm(forms.ModelForm):
+    class Meta():
+        model = Presentacion
+        fields = ['presentacion',]
+        labels = {
+            'presentacion': "Ingrese la Presentacion del Medicamento:"
+        }
+        widgets = {
+            'presentacion': forms.TextInput(attrs={"class": "form-control", "required": True})
         }

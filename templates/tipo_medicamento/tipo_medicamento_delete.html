@@ -28,7 +28,7 @@ Eliminar el Tipo de Medicamento seleccionado
             <br><br><br>
             <form action="" method="post">
                 {% csrf_token %}
-                <h3 for="" class="text-warning">Esta seguro que desea eliminar el tipo de Medicamento: {{object.tipo}} ? <span class="text-danger" >(Esta Accion no se puede deshacer)</span></h3><br><br>
+                <h3 for="" class="text-warning">Esta seguro que desea eliminar el tipo de Medicamento: {{object.tipo}} ? </h3><p class="text-danger" >(Esta Accion no se puede deshacer)</p><br><br>
                 <input type="submit" class="btn btn-danger col-md-5" value="Eliminar">
                 <a href="{% url 'tipo_medicamentos_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
             </form>   

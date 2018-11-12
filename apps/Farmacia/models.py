@@ -81,8 +81,7 @@ class Lote(models.Model):
 
     class Meta:
         db_table = 'LOTE'
-
-
+#---------------------------------------------------------------------------------------------------------------
 class Medicamento(models.Model):
     id_medicamento = models.AutoField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
     id_presentacion = models.ForeignKey('Presentacion', models.DO_NOTHING, db_column='ID_PRESENTACION')  # Field name made lowercase.
@@ -104,10 +103,10 @@ class Presentacion(models.Model):
 
     class Meta:
         db_table = 'PRESENTACION'
+        ordering = ['id_presentacion'] # Para que funcione el paginado aplicar un orden por defecto
 
     def __str__(self):
         return self.presentacion
-
 
 class Rol(models.Model):
     '''Roles Manejados por el sistema: Estos roles seran los que utilizara el sistema para todos aquellos que no sean
