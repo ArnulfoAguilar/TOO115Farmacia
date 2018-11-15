@@ -44,11 +44,17 @@
                         </li>
                     </ul>
                 </li>
-              <li>
+                <li>
                     <a href="{% url 'lote_List' %}">
-                        <i class="fa fa-archive"></i> <span>Comprar Lote</span>
+                        <i class="fa fa-medkit"></i> <span>Comprar Lote</span>
                     </a>
                 </li>
+                <li>
+                        <a href="{% url 'descuento_List' %}">
+                            <i class="fa fa-gift"></i> <span>Crear Descuento</span>
+                        </a>
+                </li>
+
             {% endblock nav_links %}
             {% endblock nav_links_outer %}
         </ul>

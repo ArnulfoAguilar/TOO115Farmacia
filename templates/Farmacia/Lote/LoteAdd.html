@@ -6,8 +6,10 @@
 
 {% block content %}
 <div class="col-md-offset-3">
-    <h2> Comprar Lote de Medicamentos</h2>
-</div>
+        <div class="page-header">
+            <h1>Comprar Lote de Medicamentos</h1>
+        </div>
+    </div>
 <div class="container-fluid">
         <div class="row">
             <div class="col-md-offset-2 col-md-6"><br><br>
@@ -26,6 +28,9 @@
                             <br>
                         <p><b>{{ form.cantidad.label}}</b></p>
                             {{ form.cantidad}}   
+                            <br>
+                            <p><b>{{ form.precio_unitario.label}}</b></p>
+                                {{ form.precio_unitario}} 
                     <br/>
                     <br/>
                     <br/>

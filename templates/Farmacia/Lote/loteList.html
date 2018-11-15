@@ -1,12 +1,14 @@
 {% extends "base/base.html" %}
 
 {% block title %}
-	Ingresar Lote
+	Lista de compras
 {% endblock title %}
 
 {% block content %}
 <div class="col-md-offset-3">
-    <h2>Lista de Compras</h2>
+    <div class="page-header">
+        <h1>Lista de Compras</h1>
+    </div>
 </div>
 <div class="container-fluid">
         <div class="row">
@@ -22,6 +24,7 @@
                         <th class="col">Presentacion</th>
                         <th class="col">Fecha de compra</th>
                         <th class="col">Cantidad</th>
+                        <th class="col">Precio Unitario</th>
                         
                     </tr>
                 </thead>
@@ -32,8 +35,8 @@
                         <td>{{lote.id_empresa}}</td>
                         <td>{{lote.id_medicamento}}</td>
                         <td>{{lote.fecha_compra}}</td>                        
-                        <td> {{lote.cantidad}}                       
-                        </td>
+                        <td> {{lote.cantidad}} </td>
+                        <td> {{lote.precio_unitario}} </td>
                     </tr>
                 {% endfor %}
                 </tbody>

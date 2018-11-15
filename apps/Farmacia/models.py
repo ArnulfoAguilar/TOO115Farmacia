@@ -81,6 +81,7 @@ class Lote(models.Model):
     id_medicamento = models.ForeignKey('Medicamento', models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
     id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True, null=True)  # Field name made lowercase.
     fecha_compra = models.DateField(db_column='FECHA_COMPRA', blank=True, null=True)  # Field name made lowercase.
+    precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')
     cantidad = models.IntegerField(db_column='CANTIDAD', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
