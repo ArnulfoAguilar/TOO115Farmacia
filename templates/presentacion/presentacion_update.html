@@ -1,0 +1,45 @@
+{% extends "base/base.html" %}
+<!-- HEREDAMOS DEL ARCHIVO base.html PARA NO REPETIR CODIGO -->
+
+<!--TITULO DE LA PAGINA-->
+{% block title %}
+Editar Presentacion de Medicamento
+{% endblock title %}
+
+<!--NOMBRE DE LA PAGINA-->
+{% block page_name %}
+Editar Presentacion de Medicamento
+{% endblock page_name  %} 
+
+<!--BREVE DESCRIPCION DE LA PAGINA-->
+{% block page_description %}
+Edite la  la categoria de la presentacion de Medicamento
+{% endblock page_description %}
+
+<!--MUESTRA LA  JERARQUIA DE CONTENIDOS AYUDANDO A LA NAVEGACION CON ENLACES-->
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'presentacion_list' %}" >Presentacion de Medicamentos</a></li>
+        <li class="active"><a>Editar Presentacion de Medicamentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="" class="">{{form.presentacion.label}}</label>
+                {{form.presentacion}}
+                {{form.presentacion.errors}}
+                <br>
+                <input class="btn btn-success col-md-5" type="submit" value="Guardar Cambios"/>
+                <a href="{% url 'presentacion_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>
+        </div>
+    </div>    
+</div>
+{% endblock content %}

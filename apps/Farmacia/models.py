@@ -13,42 +13,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
-class Descuento(models.Model):
-    id_descuento = models.AutoField(db_column='ID_DESCUENTO', primary_key=True)  # Field name made lowercase.
-    nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
-    field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
-    fecha_inicio = models.DateField(db_column='FECHA_INICIO')  # Field name made lowercase.
-    fecha_fin = models.DateField(db_column='FECHA_FIN')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'DESCUENTO'
-
-    def __str__(self):
-        return self.nombre
-
-
-class Devolucion(models.Model):
-    id_devolucion = models.AutoField(db_column='ID_DEVOLUCION', primary_key=True)  # Field name made lowercase.
-    id_venta = models.ForeignKey('Venta', models.DO_NOTHING, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
-    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
-    fecha_devolucion = models.DateField(db_column='FECHA_DEVOLUCION')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'DEVOLUCION'
-
-
-class DevolucionMed(models.Model):
-    id_devolucion_det = models.AutoField(db_column='ID_DEVOLUCION_DET', primary_key=True)  # Field name made lowercase.
-    id_devolucion = models.ForeignKey(Devolucion, models.DO_NOTHING, db_column='ID_DEVOLUCION', blank=True, null=True)  # Field name made lowercase.
-    cantidad = models.FloatField(db_column='CANTIDAD')  # Field name made lowercase.
-    precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
-    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'DEVOLUCION_MED'
-
-
 class Empresa(models.Model):
     id_empresa = models.AutoField(db_column='ID_EMPRESA', primary_key=True)  # Field name made lowercase.
     nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
@@ -58,56 +22,6 @@ class Empresa(models.Model):
 
     def __str__(self):
         return self.nombre
-
-
-class Kardex(models.Model):
-    id_transaccion = models.AutoField(db_column='ID_TRANSACCION', primary_key=True)  # Field name made lowercase.
-    id_ope = models.ForeignKey('TipoOperacion', models.DO_NOTHING, db_column='ID_OPE')  # Field name made lowercase.
-    id_medic = models.IntegerField(db_column='ID_MEDIC')  # Field name made lowercase.
-    cantidad = models.IntegerField(db_column='CANTIDAD')  # Field name made lowercase.
-    precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
-    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'KARDEX'
-
-
-class Lote(models.Model):
-    id_lote = models.AutoField(db_column='ID_LOTE', primary_key=True)  # Field name made lowercase.
-    id_medicamento = models.ForeignKey('Medicamento', models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
-    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True, null=True)  # Field name made lowercase.
-    fecha_compra = models.DateField(db_column='FECHA_COMPRA', blank=True, null=True)  # Field name made lowercase.
-    cantidad = models.IntegerField(db_column='CANTIDAD', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'LOTE'
-
-
-class Medicamento(models.Model):
-    id_medicamento = models.AutoField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
-    id_presentacion = models.ForeignKey('Presentacion', models.DO_NOTHING, db_column='ID_PRESENTACION')  # Field name made lowercase.
-    id_tipo = models.ForeignKey('TipoMedicamento', models.DO_NOTHING, db_column='ID_TIPO')  # Field name made lowercase.
-    nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
-    precio = models.FloatField(db_column='PRECIO', default=0)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'MEDICAMENTO'
-        ordering = ['id_medicamento'] # Para que funcione el paginado aplicar un orden por defecto
-
-    def __str__(self):
-        return self.nombre
-
-
-class Presentacion(models.Model):
-    id_presentacion = models.AutoField(db_column='ID_PRESENTACION', primary_key=True)  # Field name made lowercase.
-    presentacion = models.TextField(db_column='PRESENTACION')  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'PRESENTACION'
-
-    def __str__(self):
-        return self.presentacion
-
 
 class Rol(models.Model):
     '''Roles Manejados por el sistema: Estos roles seran los que utilizara el sistema para todos aquellos que no sean
@@ -131,6 +45,38 @@ class Rol(models.Model):
     def __str__(self):
         return self.get_id_rol_display()
 
+class User(AbstractUser):
+    id_empresa = models.ForeignKey(Empresa, models.PROTECT, db_column='ID_EMPRESA', blank=True,null=True)  # Field name made lowercase.
+    id_rol = models.ForeignKey(Rol, models.PROTECT, db_column='ID_ROL', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'USER'
+
+#---------------------------------------------------------------------------------------------------------------
+class Descuento(models.Model):
+    id_descuento = models.AutoField(db_column='ID_DESCUENTO', primary_key=True)  # Field name made lowercase.
+    nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
+    field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
+    fecha_inicio = models.DateField(db_column='FECHA_INICIO')  # Field name made lowercase.
+    fecha_fin = models.DateField(db_column='FECHA_FIN')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'DESCUENTO'
+
+    def __str__(self):
+        return self.nombre
+
+class Presentacion(models.Model):
+    id_presentacion = models.AutoField(db_column='ID_PRESENTACION', primary_key=True)  # Field name made lowercase.
+    presentacion = models.TextField(db_column='PRESENTACION', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'PRESENTACION'
+        ordering = ['id_presentacion'] # Para que funcione el paginado aplicar un orden por defecto
+
+    def __str__(self):
+        return self.presentacion
+
 class TipoMedicamento(models.Model):
     id_tipo = models.AutoField(db_column='ID_TIPO', primary_key=True)  # Field name made lowercase.
     tipo = models.TextField(db_column='TIPO')  # Field name made lowercase.
@@ -142,7 +88,64 @@ class TipoMedicamento(models.Model):
     def __str__(self):
         return self.tipo
 
+class Medicamento(models.Model):
+    id_medicamento = models.AutoField(db_column='ID_MEDICAMENTO', primary_key=True)  # Field name made lowercase.
+    id_presentacion = models.ForeignKey('Presentacion', models.PROTECT, db_column='ID_PRESENTACION')  # Field name made lowercase.
+    id_tipo = models.ForeignKey('TipoMedicamento', models.PROTECT, db_column='ID_TIPO')  # Field name made lowercase.
+    nombre = models.TextField(db_column='NOMBRE')  # Field name made lowercase.
+    precio = models.FloatField(db_column='PRECIO', default=0)  # Field name made lowercase.
 
+    class Meta:
+        db_table = 'MEDICAMENTO'
+        ordering = ['id_medicamento'] # Para que funcione el paginado aplicar un orden por defecto
+
+    def __str__(self):
+        return self.nombre
+
+#---------------------------------------------------------------------------------------------------------------
+class Venta(models.Model):
+    id_venta = models.AutoField(db_column='ID_VENTA', primary_key=True)  # Field name made lowercase.
+    id_user = models.ForeignKey(User, models.PROTECT, db_column='ID_USER', blank=True, null=True)  # Field name made lowercase.
+    field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
+    fecha = models.DateField(db_column='FECHA')  # Field name made lowercase.
+    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'VENTA'
+
+class VentaMed(models.Model):
+    id_venta_detalle = models.AutoField(db_column='ID_VENTA_DETALLE', primary_key=True)  # Field name made lowercase.
+    id_venta = models.ForeignKey(Venta, models.PROTECT, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
+    id_medicamento = models.ForeignKey(Medicamento, models.PROTECT, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
+    id_descuento = models.ForeignKey(Descuento, models.PROTECT, db_column='ID_DESCUENTO', blank=True, null=True)  # Field name made lowercase.
+    cantidad = models.IntegerField(db_column='CANTIDAD', blank=True, null=True)  # Field name made lowercase.
+    precio_neto = models.FloatField(db_column='PRECIO_NETO', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'VENTA_MED'
+
+#---------------------------------------------------------------------------------------------------------------
+class Devolucion(models.Model):
+    id_devolucion = models.AutoField(db_column='ID_DEVOLUCION', primary_key=True)  # Field name made lowercase.
+    id_venta = models.ForeignKey('Venta', models.PROTECT, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
+    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
+    fecha_devolucion = models.DateField(db_column='FECHA_DEVOLUCION')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'DEVOLUCION'
+
+
+class DevolucionMed(models.Model):
+    id_devolucion_det = models.AutoField(db_column='ID_DEVOLUCION_DET', primary_key=True)  # Field name made lowercase.
+    id_devolucion = models.ForeignKey(Devolucion, models.PROTECT, db_column='ID_DEVOLUCION', blank=True, null=True)  # Field name made lowercase.
+    cantidad = models.FloatField(db_column='CANTIDAD')  # Field name made lowercase.
+    precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
+    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
+
+    class Meta:
+        db_table = 'DEVOLUCION_MED'
+
+#---------------------------------------------------------------------------------------------------------------
 class TipoOperacion(models.Model):
     id_ope = models.AutoField(db_column='ID_OPE', primary_key=True)  # Field name made lowercase.
     operacion = models.CharField(db_column='OPERACION', max_length=1)  # Field name made lowercase.
@@ -153,33 +156,24 @@ class TipoOperacion(models.Model):
     def __str__(self):
         return self.operacion
 
-
-class User(AbstractUser):
-    id_empresa = models.ForeignKey(Empresa, models.DO_NOTHING, db_column='ID_EMPRESA', blank=True,null=True)  # Field name made lowercase.
-    id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='ID_ROL', blank=True, null=True)  # Field name made lowercase.
-
-    class Meta:
-        db_table = 'USER'
-
-
-class Venta(models.Model):
-    id_venta = models.AutoField(db_column='ID_VENTA', primary_key=True)  # Field name made lowercase.
-    id_user = models.ForeignKey(User, models.DO_NOTHING, db_column='ID_USER', blank=True, null=True)  # Field name made lowercase.
-    field_desc = models.IntegerField(db_column='_DESC')  # Field name made lowercase. Field renamed because it started with '_'.
-    fecha = models.DateField(db_column='FECHA')  # Field name made lowercase.
+class Kardex(models.Model):
+    id_transaccion = models.AutoField(db_column='ID_TRANSACCION', primary_key=True)  # Field name made lowercase.
+    id_ope = models.ForeignKey('TipoOperacion', models.PROTECT, db_column='ID_OPE')  # Field name made lowercase.
+    id_medic = models.IntegerField(db_column='ID_MEDIC')  # Field name made lowercase.
+    cantidad = models.IntegerField(db_column='CANTIDAD')  # Field name made lowercase.
+    precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
     total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
 
     class Meta:
-        db_table = 'VENTA'
+        db_table = 'KARDEX'
 
 
-class VentaMed(models.Model):
-    id_venta_detalle = models.AutoField(db_column='ID_VENTA_DETALLE', primary_key=True)  # Field name made lowercase.
-    id_venta = models.ForeignKey(Venta, models.DO_NOTHING, db_column='ID_VENTA', blank=True, null=True)  # Field name made lowercase.
-    id_medicamento = models.ForeignKey(Medicamento, models.DO_NOTHING, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
-    id_descuento = models.ForeignKey(Descuento, models.DO_NOTHING, db_column='ID_DESCUENTO', blank=True, null=True)  # Field name made lowercase.
+class Lote(models.Model):
+    id_lote = models.AutoField(db_column='ID_LOTE', primary_key=True)  # Field name made lowercase.
+    id_medicamento = models.ForeignKey('Medicamento', models.PROTECT, db_column='ID_MEDICAMENTO', blank=True, null=True)  # Field name made lowercase.
+    id_empresa = models.ForeignKey(Empresa, models.PROTECT, db_column='ID_EMPRESA', blank=True, null=True)  # Field name made lowercase.
+    fecha_compra = models.DateField(db_column='FECHA_COMPRA', blank=True, null=True)  # Field name made lowercase.
     cantidad = models.IntegerField(db_column='CANTIDAD', blank=True, null=True)  # Field name made lowercase.
-    precio_neto = models.FloatField(db_column='PRECIO_NETO', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
-        db_table = 'VENTA_MED'
+        db_table = 'LOTE'
