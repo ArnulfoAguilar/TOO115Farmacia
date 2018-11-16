@@ -6,8 +6,12 @@
 	content # Para el html de la pagina a crear
  #}
 {% block title %}
-	Aplicacion Farmacia
+	Pagina Principal
 {% endblock title %}
+
+{% block page_name %}
+Farmacia: Pagina Principal
+{% endblock page_name %}
 
 {% block breadcrumbs %}
 	
@@ -20,12 +24,8 @@
 {% block content %}
 	<div class="container-fluid">
 		<div class="row">
-			<h1>Bienvenidos a la pagina principal de Farmacia TOO115</h1>
-			<div class="col-md-offset-2 col-md-4">
-					<p>Algunos enlaces utiles:</p>
-					<a href="{% url 'login' %}" class="btn btn-info">Iniciar Sesion</a>
-			</div>
-
+            <h2 class="text text-info">En Construccion....</h2>
+            
 		</div>
 	</div>
 {% endblock content %}

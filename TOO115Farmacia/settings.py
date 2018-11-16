@@ -122,9 +122,12 @@ TIME_ZONE = 'America/El_Salvador'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
+
+# Formato de Numero (Cambiado L10N a FALSE)
+USE_THOUSAND_SEPARATOR = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -146,4 +149,4 @@ AUTH_USER_MODEL = 'Farmacia.User'
 
 # URLS para redireccionamiento de 
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/usuarios/index/'
+LOGIN_REDIRECT_URL = '/farmacia/'

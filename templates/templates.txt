@@ -1,1 +1,40 @@
-Aquí se encuentran almacenadas todas las plantillas de sitio que tenemos para cada aplicación y para el proyecto. Por convención dentro de la carpeta templates hay que crear una carpeta con el mismo nombre de la app para que el Servidor de Django pueda detectar plantillas para la aplicación creada. 
+Aqui se encuentran almacenadas todas las plantillas de sitio que tenemos para cada aplicaciin y para el proyecto. 
+Por convenciin dentro de la carpeta templates hay que crear una carpeta con el mismo nombre de la app 
+para que el Servidor de Django pueda detectar plantillas para la aplicacion creada. 
+
+Esquema de bloques de la plantilla base.html 
+
+    title (Modificable: Titulo de la pagina)
+    meta  (Etiquetas de Metadatos)
+    stylesheets (include a _styles.html)
+    extra_head  (Modificable: Etiquetas adicionales para header)
+    body
+        nav_header (include a _header.html)
+        nav_sidebar (include a _sidebar.html)
+        content_wrapper
+            content_header
+                no_heading
+                    page_name (Modificable: Nombre de la pagina)
+                    page_actions (Modificable: Acciones de la pagina)
+                    no_description
+                        page_description (Modificable: Descripcion de la pagina)
+                    breadcrumbs (Modificable: los breadcrumbs del sitio para mejor navegabilidad)
+            content_outer
+                messages (include a _messages.html)
+                content_block_wrap
+                    content (Modificable: Contenido principal del sitio)
+        nav_footer (include a _footer.html)
+    javascript (include a _scripts.html)
+    extra_foot (Modificable: etiquetas HTML adicionales para footer)
+
+
+Blocks que se pueden modificar en cada template:
+
+title (Titulo de la pagina [En la pestana del navegador])
+extra_head
+    page_name (Nombre de la pagina)
+    page_actions (Acciones de la pagina)
+        page_description (Descripcion)
+    breadcrumbs (Navegacion)
+    content (Contenido proncipal)
+extra_foot
