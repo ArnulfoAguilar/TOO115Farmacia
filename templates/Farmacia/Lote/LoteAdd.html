@@ -12,23 +12,27 @@
     </div>
 <div class="container-fluid">
         <div class="row">
-            <div class="col-md-offset-2 col-md-6"><br><br>
+            <div class="col-md-offset-2 col-md-6">
                 <form action="" method="POST">
                     {% csrf_token %} 
-                    
-                        <p><b>{{ form.id_medicamento.label}}</b></p>
+                        <div class="col-md-6">
+                        <p class="col-md-6"><b>{{ form.id_medicamento.label}}</b></p>
                             {{ form.id_medicamento}}
-                           <br>
-                        <p><b>{{ form.id_empresa.label}}</b></p>
+                        </div>
+                            <div class="col-md-6">   
+                        <p class="col-md-6"><b>{{ form.id_empresa.label}}</b></p>
                             {{ form.id_empresa}}
-                            <br>
+                        </div>
+                            
                             {{ form.fecha_compra.errors}}
                         <p><b>{{ form.fecha_compra.label}}</b></p>
                             {{ form.fecha_compra}}
-                            <br>
+
+
+                            
                         <p><b>{{ form.cantidad.label}}</b></p>
                             {{ form.cantidad}}   
-                            <br>
+                            
                             <p><b>{{ form.precio_unitario.label}}</b></p>
                                 {{ form.precio_unitario}} 
                     <br/>
