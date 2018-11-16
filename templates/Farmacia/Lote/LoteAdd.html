@@ -16,20 +16,17 @@
                 <form action="" method="POST">
                     {% csrf_token %} 
                         <div class="col-md-6">
-                        <p class="col-md-6"><b>{{ form.id_medicamento.label}}</b></p>
+                            <p ><b>{{ form.id_medicamento.label}}</b></p>
                             {{ form.id_medicamento}}
                         </div>
-                            <div class="col-md-6">   
-                        <p class="col-md-6"><b>{{ form.id_empresa.label}}</b></p>
+                        <div class="col-md-6">   
+                            <p ><b>{{ form.id_empresa.label}}</b></p>
                             {{ form.id_empresa}}
                         </div>
                             
                             {{ form.fecha_compra.errors}}
                         <p><b>{{ form.fecha_compra.label}}</b></p>
                             {{ form.fecha_compra}}
-
-
-                            
                         <p><b>{{ form.cantidad.label}}</b></p>
                             {{ form.cantidad}}   
                             
