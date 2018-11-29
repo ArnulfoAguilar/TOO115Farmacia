@@ -62,4 +62,9 @@ urlpatterns = [
     path("Descuento/List", views.DescuentoList.as_view(), name="descuento_List"),
      # Agregar nuevo descuento
     path("Descuento/Create", views.DescuentoCreate.as_view(), name="descuento_Create"),
+
+    # URLS para proceso de Venta de Medicamentos
+    path('venta/', views.VentaTemplate.as_view(), name='venta'),
+    path('api/obtener_medicamentos', views.obtener_medicamentos, name="api_obtener_medicamentos"),
+    path('api/seleccionar_medicamento', views.seleccionar_medicamento, name="api_seleccionar_medicamento")
 ]

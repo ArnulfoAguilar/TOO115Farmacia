@@ -13,6 +13,9 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import TipoMedicamentoForm, MedicamentoForm, PresentacionForm, LoteForm, DescuentoForm
 # Import de Modelos
 from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento
+# Import de Herramientas para Ajax
+import json
+from django.http import JsonResponse, HttpResponse
 # Create your views here.
 
 # Farmacia Template View
@@ -146,3 +149,21 @@ class DescuentoCreate(CreateView):
     form_class = DescuentoForm
     template_name = "Farmacia/Descuento/DescuentoCreate.html"
     success_url = reverse_lazy("descuento_List")
+
+#######################################################################################
+# Vistas para el proceso de Venta de Medicamentos
+# Acciones: Puras peticiones ajax
+# Autor: Kendal Sosa (kendalalfonso37)
+class VentaTemplate(TemplateView):
+    template_name = 'facturacion/factura.html'
+
+def obtener_medicamentos(request):
+    meds = Medicamento.objects.all().values()
+    meds_list = list(meds)
+    return JsonResponse(meds_list, safe=False)
+
+def seleccionar_medicamento(request):
+    id = request.GET.get('id', None)
+    med = Medicamento.objects.filter(id_medicamento=id).values()
+    med_list = list(med)
+    return JsonResponse(med_list, safe=False)

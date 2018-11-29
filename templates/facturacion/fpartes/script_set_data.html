@@ -1,0 +1,17 @@
+<script>
+    $(document).ready(function(){
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear()+"-"+(month)+"-"+(day);
+        $('input#date').val(today);
+    });
+    $(document).ready(function(){
+        var user = '{% firstof request.user.get_short_name request.user.get_username %}';
+        $('input#user').val(user);
+    });
+    $(document).ready(function(){
+        var idUser = '{{request.user.id}}';
+        $('input#id_user').val(idUser);
+    });
+</script>

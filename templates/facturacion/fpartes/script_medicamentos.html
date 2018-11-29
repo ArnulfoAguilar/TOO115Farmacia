@@ -1,0 +1,78 @@
+<script>
+function listarMedicamentos(){
+    $('#modalChooseMedicamentos').modal('show');
+    url = '{% url 'api_obtener_medicamentos' %}'
+    $.ajax({
+        url:url,
+        type: "GET",
+        dataType: "json"
+    }).done(function(medicamentos){
+        var filas = $('#modalChooseMedicamentosBodyTable');
+        filas.empty();
+        $.each(medicamentos, function(key, medicamentos){
+            console.log(medicamentos.id_medicamento)
+            filas.append('<tr onclick="seleccionarMedicamento('+medicamentos.id_medicamento+')">'+
+            '<td>'+medicamentos.nombre+'</td>'+
+            '<td>'+medicamentos.precio+'</td>'+
+            '</tr>');
+        });
+    }).fail(function(){
+        console.log("error");
+    }).always(function(){
+        console.log("complete");
+    });
+}
+
+
+function seleccionarMedicamento(id){
+    var filas = $('div#lineaDeVenta')
+    $('#modalChooseMedicamentos').modal('hide');
+    url = "{% url 'api_seleccionar_medicamento' %}";
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        data: {"id":id},
+    }).done(function(medicamento){
+        var filas = $('#lineaDeVenta');
+        $.each(medicamento, function(key, medicamento){
+            console.log(medicamento.id_medicamento)
+            filas.append('<tr id="med'+ medicamento.id_medicamento +'">'+
+            '<td>'+medicamento.nombre+'</td>'+
+            '<td id="precioUnitario">'+medicamento.precio+'</td>'+
+            '<td id="cantidad"><input type="number" class="form-control" value="" lang="en" min="1" step="1" onchange="calcular();"></input></td>'+
+            '<td></td>'+
+            '<td id="subtotal"></td>'+
+            '<td class="btn btn-danger btn-sm" onclick="eliminarMedicamento('+ medicamento.id_medicamento +')">Eliminar</td>'+
+            '</tr>');
+
+            calcular();
+        });
+    }).fail(function(){
+        console.log("error");
+    }).always(function(){
+        console.log("complete");
+    });    
+}
+
+function eliminarMedicamento(id){
+    var fila = $("#med"+id);
+    fila.remove();
+}
+
+function calcular(){
+    var subtotal = 0;
+    var cantidad = 0;
+    var precioUnitario = 0;
+    $('#lineaDeVenta').find('tr').each(function(){
+        var row = $(this);
+        var ooo = row.find('#cantidad');
+        cantidad = cantidad + parseFloat(ooo);
+        precioUnitario = cantidad + parseFloat(row.find('#precioUnitario').val());
+        subtotal = cantidad*precioUnitario;
+
+        $('#subtotal').text(subtotal);
+    });
+    
+}
+</script>

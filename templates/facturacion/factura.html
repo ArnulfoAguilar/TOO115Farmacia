@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Venta de Medicamentos
+{% endblock title %}
+
+{% block page_name %}
+Venta de Medicamentos
+{% endblock page_name %}
+
+{% block page_description %}
+Realice procesos de venta
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li class="active"><a>Venta</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <label for="" class="form-group">Fecha:</label>
+            <input type="text" id="date" class="form-control" value="" readonly>
+        </div>
+        <div class="col-md-4">
+            <label for="" class="form-group">Vendedor:</label>
+            <input type="text" id="user" class="form-control" value="" readonly>
+            <input type="hidden" id="id_user" value="">
+        </div>
+        <div class="col-md-4">
+            <label for="" class="form-group">Descuento:</label>
+            <input type="number" id="desc" class="form-control" lang="en" min="0" max="1" step="0.01" value="0">
+        </div>
+    </div><br>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="" id="cliente" class="form-group">Cliente:</label>
+            <input type="text" name="cliente" id="cliente" class="form-control"></label>
+        </div>
+    </div><br>
+    <button type="button" class="btn btn-primary" onclick="listarMedicamentos();">Agregar Medicamento</button>
+    <div class="row">
+        <table class="table table-bordered table-hover table-responsive" id="tablaVentas">
+            <thead class="thead-default">
+                <tr>
+                    <th>Medicamento</th>
+                    <th>Precio Unitario</th>
+                    <th>Cantidad</th>
+                    <th>Descuento</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="lineaDeVenta">
+                </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-offset-9 col-md-3"><br>
+                <label for="" class="form-group">Total Venta</label>
+                <input type="text" name="totalVenta" id="totalVenta" class="form-group" readonly><br>
+            </div>
+            <div class="col-md-3">
+                <button type="button" name="guardarVenta" id="guardarVenta" class="btn btn-success">Guardar e Imprimir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modalChooseMedicamentos" id="modalChooseMedicamentos">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" >Agregar Medicamento</h4>
+                </div>
+                <div class="modal-body" id="modalChooseMedicamentosBody">
+                    <p>Haga clic en el medicamento que desea seleccionar</p>
+                    <table class="table table-hover table-bordered" id="modalChooseMedicamentosTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre del Medicamento</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalChooseMedicamentosBodyTable">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_foot %}
+{% include "facturacion/fpartes/script_set_data.html" %}
+{% include "facturacion/fpartes/script_medicamentos.html" %}
+{% endblock extra_foot %}
