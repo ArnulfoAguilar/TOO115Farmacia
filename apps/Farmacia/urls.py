@@ -62,4 +62,21 @@ urlpatterns = [
     path("Descuento/List", views.DescuentoList.as_view(), name="descuento_List"),
      # Agregar nuevo descuento
     path("Descuento/Create", views.DescuentoCreate.as_view(), name="descuento_Create"),
+
+        #############################################################################################################
+    # URLS Para los Presentacion de usuarios
+    # Autor: Juanjo Montes (juanjo962)
+    
+    #juanjo listar usuarios tipo vendedores
+    path('user/list', views.UserListView, name='user_list'),
+    #juanjo listar usuarios tipo bodegueros
+    path('user/listt', views.UserListView2, name='user2_list'),
+    #juanjo crear usuarios
+    path("user/new", views.UserCreate, name="user_create"),
+    #detalle usuarios
+     path('user/edit/', views. PasswordChangeView.as_view(), name="edit_pass"),
+   
+    path('user/info/<int:pk>', views.UserDetail.as_view(), name="user_detail"),
+    #delete usuarios
+     path('user/delete/<int:pk>', views.UserDelete.as_view(), name="user_delete"),
 ]

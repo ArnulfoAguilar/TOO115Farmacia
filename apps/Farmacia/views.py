@@ -13,6 +13,24 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import TipoMedicamentoForm, MedicamentoForm, PresentacionForm, LoteForm, DescuentoForm
 # Import de Modelos
 from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento
+#import form
+from apps.usuarios.forms import SignUpForm
+#import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
+#impor for change password
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.debug import sensitive_post_parameters
+from django.views.generic.edit import FormView
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+
+
+from django.contrib.auth.views import password_reset
 # Create your views here.
 
 # Farmacia Template View
@@ -146,3 +164,72 @@ class DescuentoCreate(CreateView):
     form_class = DescuentoForm
     template_name = "Farmacia/Descuento/DescuentoCreate.html"
     success_url = reverse_lazy("descuento_List")
+
+#######################################################################################
+# Vistas para el CRUD de usuarios
+# Acciones: Crear,cambiar pass , Eliminar, Listar, Detalles
+# Autor: Juanjo Montes (juanjo962)
+
+#JUANJO: clase para listar los vendedores
+def UserListView(request):
+    queryse= User.objects.filter(id_rol=3,id_empresa=request.user.id_empresa)
+    contexto={'users':queryse}
+    return render(request,'user/user_list.html',contexto)
+
+#JUANJO: clase para listar los bodegueros
+def UserListView2(request):
+    queryse= User.objects.filter(id_rol=4,id_empresa=request.user.id_empresa)
+    contexto={'users':queryse}
+    return render(request,'user/user_list.html',contexto)
+
+#JUANJO:crear nuevo usuario
+def UserCreate(request):
+    if request.method == 'POST':       
+        form = SignUpForm(request.POST)
+        form.id_rol.queryset=Rol.objects.filter(id_rol=[3,4])
+        if form.is_valid():
+            # Guardamos el Usuario
+            form.save()
+            return redirect('user_list')
+    else:
+        form = SignUpForm()
+        # redirigir el formulario vacio para llenar los datos
+    return render(request,'user/user_create.html',{'form':form})
+
+#JUANJO:detalle de usuario
+class UserDetail(DetailView):
+    model = User
+    template_name = "user/user_detail.html"
+    context_object_name = "users"
+
+#JUANJO:borrar usuario
+class UserDelete(DeleteView):
+    model = User
+    success_url = reverse_lazy("user_list")
+    template_name = "user/user_delete.html"
+    context_object_name = "users"
+
+#JUANJO:cambia contraseña por usuario
+class PasswordChangeView(FormView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy("farmacia_index")
+    template_name = "user/user_update.html"
+    
+    @method_decorator(sensitive_post_parameters())
+    @method_decorator(csrf_protect)
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+    def form_valid(self, form):
+        form.save()
+        # Updating the password logs out all other sessions for the user
+        # except the current one.
+        update_session_auth_hash(self.request, form.user)
+        return super().form_valid(form)
+        

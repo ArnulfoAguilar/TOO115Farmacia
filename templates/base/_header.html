@@ -53,6 +53,9 @@
                                         <a href="{% block change_password_url %}{% url 'admin:password_change' %}{% endblock %}"
                                            class="btn btn-default btn-flat">{% trans 'Change password' %}</a>
                                     </div> {% endcomment %}
+                                    <div class="pull-left">
+                                        <a href="{% url 'edit_pass' %}" class="btn btn-default btn-flat">cambiar Contraseña</a>
+                                    </div>
                                     <div class="pull-right">
                                         <a href="{% url 'logout' %}" class="btn btn-default btn-flat">Cerrar Sesion</a>
                                     </div>
