@@ -23,27 +23,17 @@ Realice procesos de venta
 {% block content %}
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="" class="form-group">Fecha:</label>
             <input type="text" id="date" class="form-control" value="" readonly>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="" class="form-group">Vendedor:</label>
             <input type="text" id="user" class="form-control" value="" readonly>
             <input type="hidden" id="id_user" value="">
         </div>
-        <div class="col-md-4">
-            <label for="" class="form-group">Descuento:</label>
-            <input type="number" id="desc" class="form-control" lang="en" min="0" max="1" step="0.01" value="0">
-        </div>
     </div><br>
-    <div class="row">
-        <div class="col-md-12">
-            <label for="" id="cliente" class="form-group">Cliente:</label>
-            <input type="text" name="cliente" id="cliente" class="form-control"></label>
-        </div>
-    </div><br>
-    <button type="button" class="btn btn-primary" onclick="listarMedicamentos();">Agregar Medicamento</button>
+    <button type="button" class="btn btn-primary" onclick="listarMedicamentos();">Agregar Medicamento</button><br>
     <div class="row">
         <table class="table table-bordered table-hover table-responsive" id="tablaVentas">
             <thead class="thead-default">
@@ -58,14 +48,19 @@ Realice procesos de venta
                 </thead>
                 <tbody id="lineaDeVenta">
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td><label for="" class="form-group">Total Venta</label></td>
+                        <td class="totalVenta"></td>
+                    </tr>
+                </tfoot>
         </table>
         <div class="row">
-            <div class="col-md-offset-9 col-md-3"><br>
-                <label for="" class="form-group">Total Venta</label>
-                <input type="text" name="totalVenta" id="totalVenta" class="form-group" readonly><br>
-            </div>
             <div class="col-md-3">
-                <button type="button" name="guardarVenta" id="guardarVenta" class="btn btn-success">Guardar e Imprimir</button>
+                <button type="button" name="guardarVenta" id="guardarVenta" class="btn btn-success">Guardar Venta</button>
             </div>
         </div>
     </div>

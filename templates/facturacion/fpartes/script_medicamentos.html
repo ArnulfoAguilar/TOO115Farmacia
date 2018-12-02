@@ -37,42 +37,54 @@ function seleccionarMedicamento(id){
         var filas = $('#lineaDeVenta');
         $.each(medicamento, function(key, medicamento){
             console.log(medicamento.id_medicamento)
-            filas.append('<tr id="med'+ medicamento.id_medicamento +'">'+
+            filas.append('<tr id="'+ medicamento.id_medicamento +'">'+
             '<td>'+medicamento.nombre+'</td>'+
-            '<td id="precioUnitario">'+medicamento.precio+'</td>'+
-            '<td id="cantidad"><input type="number" class="form-control" value="" lang="en" min="1" step="1" onchange="calcular();"></input></td>'+
-            '<td></td>'+
-            '<td id="subtotal"></td>'+
+            '<td id="precioUnitario">'+parseFloat(medicamento.precio)+'</td>'+
+            '<td id="cantidad">1</input></td>'+
+            '<td id="descuento" value="">'+'0'+'</td>'+
+            '<td id="subtotal" class="subtotal" value=""></td>'+
             '<td class="btn btn-danger btn-sm" onclick="eliminarMedicamento('+ medicamento.id_medicamento +')">Eliminar</td>'+
             '</tr>');
-
-            calcular();
         });
     }).fail(function(){
         console.log("error");
     }).always(function(){
         console.log("complete");
+        calcular();
+        //calcularVenta();
     });    
 }
 
-function eliminarMedicamento(id){
-    var fila = $("#med"+id);
-    fila.remove();
-}
-
 function calcular(){
-    var subtotal = 0;
-    var cantidad = 0;
-    var precioUnitario = 0;
-    $('#lineaDeVenta').find('tr').each(function(){
-        var row = $(this);
-        var ooo = row.find('#cantidad');
-        cantidad = cantidad + parseFloat(ooo);
-        precioUnitario = cantidad + parseFloat(row.find('#precioUnitario').val());
-        subtotal = cantidad*precioUnitario;
 
-        $('#subtotal').text(subtotal);
+    var sum = 0.0;
+    $('#tablaVentas > tbody  > tr').each(function () {
+        var qty = 1;
+        // Fix: price is in text, not in a form field
+        // and it must be cleaned from the pound sign
+        var price = $(this).find('#precioUnitario').text().replace(/[^\d.]/, '');
+        var amount = (qty * price);
+        sum += amount;
+        $(this).find('#subtotal').text(amount.toFixed(2));
     });
+
+    //just update the total to sum
+    $('#tablaVentas > tfoot > tr > td.totalVenta').text(sum.toFixed(2));
     
+}
+/*
+function calcularVenta(){
+    var totalHtml = $('#tablaVentas > tfoot > tr > td.totalVenta');
+    var total = 0.0;
+    $('#tablaVentas > tbody ').find('tr').each(function(){
+        total += parseFloat($(this).find('.subtotal').text());
+    });
+    totalHtml.val(total.toFixed(2));
+}*/
+
+function eliminarMedicamento(id){
+    var fila = $("#"+id);
+    fila.remove();
+    calcular();
 }
 </script>
