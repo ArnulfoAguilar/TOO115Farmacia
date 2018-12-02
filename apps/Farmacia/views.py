@@ -146,3 +146,20 @@ class DescuentoCreate(CreateView):
     form_class = DescuentoForm
     template_name = "Farmacia/Descuento/DescuentoCreate.html"
     success_url = reverse_lazy("descuento_List")
+
+class DescuentoUpdate (UpdateView):
+    model = Descuento
+    form_class = DescuentoForm
+    template_name = "Farmacia/Descuento/DescuentoCreate.html"
+    success_url = reverse_lazy("descuento_List")
+
+class DescuentoDelete (DeleteView):
+    model = Descuento
+    template_name = "Farmacia/Descuento/DescuentoDelete.html"
+    success_url = reverse_lazy("descuento_List")
+
+class DescuentoDetail (DetailView):
+    model = Descuento
+    context_object_name = "descuento"
+    template_name = "Farmacia/Descuento/DescuentoDetail.html"
+   

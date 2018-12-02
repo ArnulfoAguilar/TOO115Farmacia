@@ -62,4 +62,8 @@ urlpatterns = [
     path("Descuento/List", views.DescuentoList.as_view(), name="descuento_List"),
      # Agregar nuevo descuento
     path("Descuento/Create", views.DescuentoCreate.as_view(), name="descuento_Create"),
+      # Update descuento
+    path("Descuento/Update/<int:pk>", views.DescuentoUpdate.as_view(), name="descuento_Update"),
+    path("Descuento/Delete/<int:pk>", views.DescuentoDelete.as_view(), name="descuento_Delete"),
+     path("Descuento/Detail/<int:pk>", views.DescuentoDetail.as_view(), name="descuento_Detail"),
 ]

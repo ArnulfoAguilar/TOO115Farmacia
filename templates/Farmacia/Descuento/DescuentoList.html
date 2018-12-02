@@ -3,7 +3,13 @@
 {% block title %}
 	Lista de Descuentos
 {% endblock title %}
-
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="">Descuentos</a></li>
+    </ul>
+{% endblock breadcrumbs %}
 {% block content %}
 <div class="col-md-offset-3">
         <div class="page-header">
@@ -24,6 +30,7 @@
                         <th class="col">Porcentaje</th>
                         <th class="col">Fecha de inicio</th>
                         <th class="col">Fecha Fin</th>
+                        <th class="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +41,11 @@
                         <td>{{descuento.field_desc}}</td>
                         <td>{{descuento.fecha_inicio}}</td>                        
                         <td> {{descuento.fecha_fin}} </td>
-                        
+                        <td>
+                            <a class="btn btn-success" href="{% url 'descuento_Detail' descuento.id_descuento %}" role="button">Detalles</a> &nbsp&nbsp 
+                            <a class="btn btn-primary" href="{% url 'descuento_Update' descuento.id_descuento %}" role="button">Editar</a> &nbsp&nbsp 
+                            <a class="btn btn-danger" href="{% url 'descuento_Delete' descuento.id_descuento %}" role="button">Eliminar</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
