@@ -18,6 +18,7 @@
         {% block form %}{% endblock %}
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
+        {%if request.user.is_authenticated %}
         {% block nav_links_ul %}
         <ul class="sidebar-menu">
             {% block nav_links_outer %}
@@ -86,6 +87,7 @@
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}
+        {% endif %}
     </section>
     <!-- /.sidebar -->
 </aside>
