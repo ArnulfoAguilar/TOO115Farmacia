@@ -12,13 +12,26 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Import de Formularios
 from .forms import TipoMedicamentoForm, MedicamentoForm, PresentacionForm, LoteForm, DescuentoForm
 # Import de Modelos
-from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento
+from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento,Venta, User
 # Create your views here.
 
 # Farmacia Template View
-class FarmaciaIndex(TemplateView):
-    template_name = "farmacia/farmacia.html"
+#class FarmaciaIndex(TemplateView):
+ #   compras = Lote.objects.filter(id_empresa='1').count()
+  #  template_name = "farmacia/farmacia.html"
 
+def FarmaciaIndex(request):
+    compras = Lote.objects.filter(id_empresa=request.user.id_empresa).count()
+    ventas =   Venta.objects.filter(id_user=request.user.id).count()
+    medicamentos =Medicamento.objects.count()
+    empleados = User.objects.filter(id_empresa=request.user.id_empresa).count()
+    return render(request,'farmacia/farmacia.html',
+    {
+        'compras' : compras, 
+        'ventas' : ventas,
+        'medicamentos' : medicamentos,
+        'empleados' : empleados
+        })
 #######################################################################################
 # Vistas para el CRUD de Tipos de Medicamentos
 # Acciones: Crear, Actualizar, Eliminar, Listar

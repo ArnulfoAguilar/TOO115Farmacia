@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 # Modulos para autenticacion e inicio de sesion
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import get_user_model
+from ..Farmacia.models import Kardex
 User = get_user_model()
 # Import de Formularios
 from .forms import SignUpForm
@@ -16,8 +17,15 @@ from .forms import SignUpForm
 # Direccion fisica: TOO115Farmacia/apps/usuarios/views.py
 # Objetivo: Proveer el indice del sistema informatico
 def index(request):
-	return render(request, 'index.html')
+	kardex = Kardex.objects.all()
+	for kar in kardex:
+		transac= kar.id_transaccion
 
+	return render(request, 'index.html',
+	{
+		'kardex' : kardex,
+		'transaccion' : transac
+	})
 # Nombre de la vista: sign_up
 # Direccion fisica: TOO115Farmacia/apps/usuarios/views.py
 # Objetivo: Proveer un formulario para que los usuarios puedan registrarse en el sistema
