@@ -51,7 +51,6 @@ function seleccionarMedicamento(id){
     }).always(function(){
         console.log("complete");
         calcular();
-        //calcularVenta();
     });    
 }
 
@@ -72,19 +71,15 @@ function calcular(){
     $('#tablaVentas > tfoot > tr > td.totalVenta').text(sum.toFixed(2));
     
 }
-/*
-function calcularVenta(){
-    var totalHtml = $('#tablaVentas > tfoot > tr > td.totalVenta');
-    var total = 0.0;
-    $('#tablaVentas > tbody ').find('tr').each(function(){
-        total += parseFloat($(this).find('.subtotal').text());
-    });
-    totalHtml.val(total.toFixed(2));
-}*/
 
 function eliminarMedicamento(id){
     var fila = $("#"+id);
     fila.remove();
     calcular();
+}
+
+function clearTablaMedicamentos(){
+    tabla = $('#tablaVentas > tbody#lineaDeVenta > tr');
+    tabla.remove();
 }
 </script>
