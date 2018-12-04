@@ -154,7 +154,7 @@ pip-selfcheck.json
 # End of https://www.gitignore.io/api/python,django,netbeans,visualstudiocode
 
 .directory
-.vscode/settings.json
-TOO115Farmacia/__pycache__/__init__.cpython-36.pyc
-TOO115Farmacia/__pycache__/settings.cpython-36.pyc
-TOO115Farmacia/__pycache__/urls.cpython-36.pyc
+apps/Farmacia/__pycache__/*
+apps/usuarios/__pycache__/*
+TOO115Farmacia/__pycache__/*
+*/__pycache__/*

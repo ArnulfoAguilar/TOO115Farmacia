@@ -160,10 +160,11 @@ class TipoOperacion(models.Model):
 class Kardex(models.Model):
     id_transaccion = models.AutoField(db_column='ID_TRANSACCION', primary_key=True)  # Field name made lowercase.
     id_ope = models.ForeignKey('TipoOperacion', models.PROTECT, db_column='ID_OPE')  # Field name made lowercase.
-    id_medic = models.IntegerField(db_column='ID_MEDIC')  # Field name made lowercase.
+    #id_medic = models.IntegerField(db_column='ID_MEDIC')  # Field name made lowercase.
+    id_medic = models.ForeignKey('Medicamento', models.PROTECT, db_column='ID_MEDIC', blank=True, null=True)
     cantidad = models.IntegerField(db_column='CANTIDAD')  # Field name made lowercase.
     precio_unitario = models.FloatField(db_column='PRECIO_UNITARIO')  # Field name made lowercase.
-    total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
+    #total = models.FloatField(db_column='TOTAL')  # Field name made lowercase.
 
     class Meta:
         db_table = 'KARDEX'
@@ -179,3 +180,6 @@ class Lote(models.Model):
 
     class Meta:
         db_table = 'LOTE'
+
+    def __str__(self):
+        return self.id_lote

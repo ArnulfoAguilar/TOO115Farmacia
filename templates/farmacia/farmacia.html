@@ -10,7 +10,7 @@
 {% endblock title %}
 
 {% block page_name %}
-Farmacia: Pagina Principal
+Pagina Principal
 {% endblock page_name %}
 
 {% block breadcrumbs %}
@@ -24,8 +24,72 @@ Farmacia: Pagina Principal
 {% block content %}
 	<div class="container-fluid">
 		<div class="row">
-            <h2 class="text text-info">En Construccion....</h2>
             
+			  <div class="col-lg-6 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-aqua">
+				  <div class="inner">
+					<h3>{{ compras }}</h3>
+	  
+					<p>Compras Realizadas</p>
+				  </div>
+				  <div class="icon">
+					<i class="fa fa-cart-plus"></i>
+				  </div>
+				</div>
+			  </div>
+			 
+			  
+
+
+			  <div class="col-lg-6 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-yellow">
+				  <div class="inner">
+					<h3>{{ ventas }}</h3>
+	  
+					<p>Ventas Realizadas por usuario</p>
+				  </div>
+				  <div class="icon">
+					<i class="fa fa-usd"></i>
+				  </div>
+				</div>
+			  </div>
+
+
+
+
+			  <div class="col-lg-6 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-green">
+				  <div class="inner">
+					<h3>{{ medicamentos }}</h3>
+	  
+					<p>Diferentes Medicamentos</p>
+				  </div>
+				  <div class="icon">
+					<i class="fa fa-medkit"></i>
+				  </div>
+				</div>
+			  </div>
+
+
+
+
+			  <div class="col-lg-6 col-xs-6">
+				<!-- small box -->
+				<div class="small-box bg-red">
+				  <div class="inner">
+					<h3>{{ empleados }}</h3>
+	  
+					<p>Empleados en la Empresa</p>
+				  </div>
+				  <div class="icon">
+					<i class="fa fa-black-tie"></i>
+				  </div>
+				</div>
+			  </div>
+
 		</div>
 	</div>
 {% endblock content %}

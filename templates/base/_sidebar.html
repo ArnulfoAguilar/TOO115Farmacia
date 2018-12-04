@@ -18,6 +18,7 @@
         {% block form %}{% endblock %}
 
         <!-- sidebar menu: : style can be found in sidebar.less -->
+        {%if request.user.is_authenticated %}
         {% block nav_links_ul %}
         <ul class="sidebar-menu">
             {% block nav_links_outer %}
@@ -63,7 +64,7 @@
                 </li>
                 <li>
                         <a href="{% url 'descuento_List' %}">
-                            <i class="fa fa-gift"></i> <span>Crear Descuento</span>
+                            <i class="fa fa-gift"></i> <span>Descuentos</span>
                         </a>
                 </li>
                 <li>
@@ -91,6 +92,7 @@
             {% endblock nav_links_outer %}
         </ul>
         {% endblock nav_links_ul %}
+        {% endif %}
     </section>
     <!-- /.sidebar -->
 </aside>

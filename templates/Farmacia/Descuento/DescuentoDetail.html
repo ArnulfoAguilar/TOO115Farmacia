@@ -1,0 +1,55 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+	Crear Descuento
+{% endblock title %}
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'descuento_List' %}">Descuentos</a></li>
+        <li><a>Detalles de Descuento</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+{% block content %}
+<div class="col-md-offset-3">
+        <div class="page-header">
+            <h1>Detalles Descuento</h1>
+        </div>
+    </div>
+<div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-6"><br><br>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                <tbody>
+                    <tr>
+                        <th>ID Descuento</th>
+                        <td>{{ descuento.id_descuento}}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <td>{{ descuento.nombre}}</td>
+                    </tr>
+                    <tr>
+                        <th>Porcentaje</th>
+                        <td>{{ descuento.field_desc}} </td>
+                    </tr>
+                    <tr>
+                        <th>Fecha Inicio</th>
+                        <td>{{ descuento.fecha_inicio}}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha fin</th>
+                        <td>{{ descuento.fecha_fin}}</td>
+                    </tr>
+                </tbody>
+                    </table>
+                    <div class="col-md-offset-4">
+                        <a href="{% url 'descuento_List' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+                    </div>
+                    </div>
+                </div>
+            </div>    
+    </div>
+{% endblock content %}

@@ -9,7 +9,8 @@ from . import views
 
 urlpatterns = [
     # Pendiente index de farmacia (kendalalfonso37)
-    path("", views.FarmaciaIndex.as_view(), name="farmacia_index"),
+    #path("", views.FarmaciaIndex.as_view(), name="farmacia_index"),
+    path("", views.FarmaciaIndex, name="farmacia_index"),
     #############################################################################################################
     # URLS Para los Tipos de Medicamentos
     # Autor: Kendal Sosa (kendalalfonso37)
@@ -56,15 +57,23 @@ urlpatterns = [
     path("Lote/List", views.loteList.as_view(), name="lote_List"),
 
 #############################################################################################################
-      # URLS Para manejar descuentos
+    # URLS Para manejar descuentos
     # Autor: Arnulfo Aguilar (ArnulfoAguilar)
-     # Listar Descuentos
+    # Listar Descuentos
     path("Descuento/List", views.DescuentoList.as_view(), name="descuento_List"),
-     # Agregar nuevo descuento
+    # Agregar nuevo descuento
     path("Descuento/Create", views.DescuentoCreate.as_view(), name="descuento_Create"),
+    # Actualizar descuento
+    path("Descuento/Update/<int:pk>", views.DescuentoUpdate.as_view(), name="descuento_Update"),
+     # Eliminar descuento
+    path("Descuento/Delete/<int:pk>", views.DescuentoDelete.as_view(), name="descuento_Delete"),
+     # Detalles descuento
+     path("Descuento/Detail/<int:pk>", views.DescuentoDetail.as_view(), name="descuento_Detail"),
 
     # URLS para proceso de Venta de Medicamentos
     path('venta/', views.VentaTemplate.as_view(), name='venta'),
     path('api/obtener_medicamentos', views.obtener_medicamentos, name="api_obtener_medicamentos"),
     path('api/seleccionar_medicamento', views.seleccionar_medicamento, name="api_seleccionar_medicamento")
+
+     
 ]

@@ -12,16 +12,30 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 # Import de Formularios
 from .forms import TipoMedicamentoForm, MedicamentoForm, PresentacionForm, LoteForm, DescuentoForm
 # Import de Modelos
-from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento
+from .models import TipoMedicamento, Medicamento, Presentacion, Lote, Descuento,Venta, User
 # Import de Herramientas para Ajax
 import json
 from django.http import JsonResponse, HttpResponse
+
 # Create your views here.
 
 # Farmacia Template View
-class FarmaciaIndex(TemplateView):
-    template_name = "farmacia/farmacia.html"
+#class FarmaciaIndex(TemplateView):
+ #   compras = Lote.objects.filter(id_empresa='1').count()
+  #  template_name = "farmacia/farmacia.html"
 
+def FarmaciaIndex(request):
+    compras = Lote.objects.filter(id_empresa=request.user.id_empresa).count()
+    ventas =   Venta.objects.filter(id_user=request.user.id).count()
+    medicamentos =Medicamento.objects.count()
+    empleados = User.objects.filter(id_empresa=request.user.id_empresa).count()
+    return render(request,'farmacia/farmacia.html',
+    {
+        'compras' : compras, 
+        'ventas' : ventas,
+        'medicamentos' : medicamentos,
+        'empleados' : empleados
+        })
 #######################################################################################
 # Vistas para el CRUD de Tipos de Medicamentos
 # Acciones: Crear, Actualizar, Eliminar, Listar
@@ -150,6 +164,22 @@ class DescuentoCreate(CreateView):
     template_name = "Farmacia/Descuento/DescuentoCreate.html"
     success_url = reverse_lazy("descuento_List")
 
+class DescuentoUpdate (UpdateView):
+    model = Descuento
+    form_class = DescuentoForm
+    template_name = "Farmacia/Descuento/DescuentoCreate.html"
+    success_url = reverse_lazy("descuento_List")
+
+class DescuentoDelete (DeleteView):
+    model = Descuento
+    template_name = "Farmacia/Descuento/DescuentoDelete.html"
+    success_url = reverse_lazy("descuento_List")
+
+class DescuentoDetail (DetailView):
+    model = Descuento
+    context_object_name = "descuento"
+    template_name = "Farmacia/Descuento/DescuentoDetail.html"
+
 #######################################################################################
 # Vistas para el proceso de Venta de Medicamentos
 # Acciones: Puras peticiones ajax
@@ -167,3 +197,4 @@ def seleccionar_medicamento(request):
     med = Medicamento.objects.filter(id_medicamento=id).values()
     med_list = list(med)
     return JsonResponse(med_list, safe=False)
+
