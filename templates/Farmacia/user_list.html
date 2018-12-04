@@ -1,0 +1,54 @@
+{% extends "base/base.html" %}
+
+{# Para toda plantilla a heredar lo haran desde base/base.html y agregaran los bloques 
+	title # Para el Titulo de la pagina web
+	breadcrumbs # Para la navegacion del sitio
+	content # Para el html de la pagina a crear
+ #}
+{% block title %}
+	Aplicacion Farmacia
+{% endblock title %}
+
+{% block breadcrumbs %}
+	
+    <ul class="breadcrumb">
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li class="active"><a>Farmacia</a></li>
+		</ul>
+
+{% endblock breadcrumbs %}
+
+{% block content %}
+	<div class="container-fluid">
+		<div class="row">
+			<h1>Bienvenidos a la pagina Gestionion de Bodegueros</h1>
+			<div class="col-md-offset-2">
+				<p>Algunos enlaces utiles:</p>
+					<!--Aqui empieza la iteracion for-->
+					{% for user in user_list %}
+					<div class="row mt-3">
+						<div class="col-md-9 mx-auto">
+							
+						   {% if user.id_rol=="Bodeguero" %}
+								<h2 class="mb-4">{{user.first_name}}</h2>
+								{{y}}
+						<div>	
+							<p>
+								{{user.email}}</p>
+							<p>{{user.id_rol}}</p>
+							{% if request.user.is_staff %}
+							| <a href="#">Editar</a>
+							| <a href="#">Borrar</a>
+						  {% endif %}
+						 
+						</div> 
+						{% endif %}
+						</div>
+					</div>
+					{% endfor %}
+												 <!--Aqui termina la iteracion for-->				
+			</div>
+
+		</div>
+	</div>
+{% endblock content %}

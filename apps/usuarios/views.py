@@ -2,16 +2,27 @@
 # Direccion Fisica: TOO115Farmacia/apps/usuarios/views.py
 # Objetivo: Proveer las vistas de la aplicacion usuarios y el index del sitio
 from django.shortcuts import render, redirect
+#juanjo:importaremos las clases qeu nos proporcionan djanfgo para poder
+#listar eliminar.....CRUD
+from django.views.generic.list import ListView
+from django.views.generic.edit import CreateView, UpdateView,DeleteView
+#END JUANJO
 # Modulos para autenticacion e inicio de sesion
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import get_user_model
-from ..Farmacia.models import Kardex
+from apps.Farmacia.models import Kardex
 User = get_user_model()
 # Import de Formularios
 from .forms import SignUpForm
 # Import de Modelos
+from apps.Farmacia.models import Rol
+#juanjo :importar el modelo user
+from apps.Farmacia.models import User
+
 
 # import de Views
+
+
 
 # Nombre de la vista: index
 # Direccion fisica: TOO115Farmacia/apps/usuarios/views.py
@@ -46,3 +57,11 @@ def sign_up(request):
 		form = SignUpForm()
 		# redirigir el formulario vacio para llenar los datos
 	return render(request, 'usuarios/signup.html', {'form': form})
+
+# Create your views here.
+
+
+
+#JUANJO: clase para listar los bodegueros
+class BodegueroListView(ListView):
+    model=User

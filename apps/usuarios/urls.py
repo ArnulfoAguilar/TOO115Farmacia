@@ -16,4 +16,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='usuarios/login.html'), name='login'),
     # Pagina para finalizar sesion
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    #juanjo listar bodegueros
+    path('bodeguero/', views.BodegueroListView.as_view(), name='bodeguero'),
+
 ]
