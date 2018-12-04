@@ -23,7 +23,7 @@ urlpatterns = [
     # Urls para el sitio de Administracion de Django
     path('admin/', admin.site.urls),
     # Url para el index de la pagina. (La vista esta en apps.usuarios.views)
-    path('', RedirectView.as_view(url='/usuarios/index/'), name='index'),
+    path('', RedirectView.as_view(url='/usuarios/kardex/'), name='index'),
     # Urls para la aplicacion Farmacia (Donde estara toda la logica de nuestro proyecto)
     #path('farmacia/',include('apps.Farmacia.urls')),
     # Urls para la parte de los Usuarios (Donde manejaremos la parte de los usuarios)

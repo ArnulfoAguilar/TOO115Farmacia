@@ -70,7 +70,7 @@ class LoteForm(forms.ModelForm):
             
             'id_medicamento' : forms.Select(attrs={'class':'form-control', "required": True}),
             'id_empresa': forms.Select(attrs={'class':'form-control', "required": True}),
-            'fecha_compra': forms.DateInput(attrs={'class':'form-control', "required": True}),
+            'fecha_compra': forms.DateInput(attrs={'class':'form-control', "required": True, "type":"date"}),
             'cantidad' : forms.NumberInput(attrs={'class':'form-control', "required": True}),
             'precio_unitario' : forms.NumberInput(attrs={'class':'form-control', "required": True}),
         }

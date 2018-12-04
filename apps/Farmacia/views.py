@@ -130,16 +130,21 @@ class MedicamentoDelete(DeleteView):
 # Vistas para la compra de lotes
 # Acciones: Crear,Listar,
 # Autor: Arnulfo Aguilar (ArnulfoAguilar)
-def lote_add(request):
-    if request.method   ==  'POST':
-        
-        form=LoteForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect('/farmacia/Lote/List')
-    else:
-        form = LoteForm()
-    return render(request,'Farmacia/Lote/loteAdd.html',{'form' : form})
+# def lote_add(request):
+#     if request.method   ==  'POST':        
+#         form=LoteForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#         return redirect('/farmacia/Lote/List')
+#     else:
+#         form = LoteForm()
+#     return render(request, 'Farmacia/Lote/LoteAdd.html' ,{'form' : form})
+
+class LoteAdd(CreateView):
+    model = Lote
+    form_class = LoteForm
+    template_name = "Farmacia/Lote/LoteAdd.html"
+    success_url = reverse_lazy("/farmacia/Lote/List")
 
 class loteList(ListView):
     model = Lote

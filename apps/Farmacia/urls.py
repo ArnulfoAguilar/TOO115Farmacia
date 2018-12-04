@@ -52,7 +52,7 @@ urlpatterns = [
       # URLS Para compra de Lotes
     # Autor: Arnulfo Aguilar (ArnulfoAguilar)
      # Comprar Lote de Medicamento
-    path("Lote/add", views.lote_add, name="lote_create"),
+    path("Lote/add", views.LoteAdd.as_view(), name="lote_create"),
      # Listar Lote de Medicamento
     path("Lote/List", views.loteList.as_view(), name="lote_List"),
 

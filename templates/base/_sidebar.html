@@ -82,8 +82,13 @@
                         </a>
                         <ul class="treeview-menu">
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-info-circle"></i> Kardex de Medicamentos
+                                <a href="{% url 'farmacia_index' %}">
+                                    <i class="fa fa-info-circle"></i> Estadisticas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'kardex_index' %}">
+                                    <i class="fa fa-info-circle"></i> Kardex
                                 </a>
                             </li>
                         </ul>
