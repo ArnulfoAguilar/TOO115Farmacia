@@ -29,13 +29,10 @@ from apps.Farmacia.models import User
 # Objetivo: Proveer el indice del sistema informatico
 def index(request):
 	kardex = Kardex.objects.all()
-	for kar in kardex:
-		transac= kar.id_transaccion
-
 	return render(request, 'index.html',
 	{
 		'kardex' : kardex,
-		'transaccion' : transac
+
 	})
 # Nombre de la vista: sign_up
 # Direccion fisica: TOO115Farmacia/apps/usuarios/views.py

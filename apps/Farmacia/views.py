@@ -128,7 +128,7 @@ class MedicamentoDelete(DeleteView):
 
 #######################################################################################
 # Vistas para la compra de lotes
-# Acciones: Crear,Listar,
+# Acciones: Crear,Listar, 
 # Autor: Arnulfo Aguilar (ArnulfoAguilar)
 # def lote_add(request):
 #     if request.method   ==  'POST':        
@@ -144,7 +144,7 @@ class LoteAdd(CreateView):
     model = Lote
     form_class = LoteForm
     template_name = "Farmacia/Lote/LoteAdd.html"
-    success_url = reverse_lazy("/farmacia/Lote/List")
+    success_url = reverse_lazy("lote_List")
 
 class loteList(ListView):
     model = Lote
