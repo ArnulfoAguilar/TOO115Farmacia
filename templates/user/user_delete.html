@@ -1,0 +1,38 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Eliminar Usuario
+{% endblock title %}
+
+{% block page_name %}
+Eliminar Usuario
+{% endblock page_name  %} 
+
+{% block page_description %}
+Eliminar el Usuario seleccionado
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'user_list' %}" >Usuarios</a></li>
+        <li class="active"><a>Eliminar Usuario</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <br><br><br>
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3 for="" class="text-warning">Esta seguro que desea eliminar el Usuario: {{users.first_name}} ?</h3><p class="text-danger" >(Esta Accion no se puede deshacer)</p><br><br>
+                <input type="submit" class="btn btn-danger col-md-5" value="Eliminar">
+                <a href="{% url 'user_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>   
+        </div>
+    </div>
+</div>
+{% endblock content %}

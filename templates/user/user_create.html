@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Crear nuevo usuario
+{% endblock title %}
+
+{% block page_name %}
+Crear nuevo Usuario
+{% endblock page_name  %} 
+
+{% block page_description %}
+Cree un nuevo Usuario
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'user_list' %}">Bodegueros Y vendedores</a></li>
+        <li class="active"><a>Crear Bodegueros Y Vendedores</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-6"><br><br>
+            <form action="" method="POST">
+                {% csrf_token %}
+               
+                {{form.as_p}}
+                
+                <br>
+                <input class="btn btn-success col-md-5" type="submit" value="Crear"/> 
+                <a href="{% url 'user_list' %}" class="btn btn-info pull-right col-md-5">Regresar al listado</a>
+            </form>
+        </div>
+    </div>    
+</div>
+{% endblock content %}

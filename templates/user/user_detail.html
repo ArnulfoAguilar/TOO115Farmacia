@@ -1,0 +1,59 @@
+{% extends "base/base.html" %}
+
+{% block title %}
+Detalles del Usuario
+{% endblock title %}
+
+{% block page_name %}
+Detalles del Usuario
+{% endblock page_name  %} 
+
+{% block page_description %}
+Puede ver detalles del Usuario seleccionado
+{% endblock page_description %}
+
+{% block breadcrumbs %}
+    <ul class="breadcrumb">
+        <li><a href="{% url 'farmacia_index' %}">Inicio</a></li>
+        <li><a>Farmacia</a></li>
+        <li><a href="{% url 'user_list' %}">Medicamentos</a></li>
+        <li><a>Detalles de Medicamento</a></li>
+    </ul>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Username</th>
+                            <td>{{users.username}}</td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td>{{users.first_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Apellidos</th>
+                            <td>{{users.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Correo</th>
+                            <td>{{users.email}}</td>
+                        </tr>
+                        <tr>
+                            <th>Tipo de usuario</th>
+                            <td>{{users.id_rol}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="{% url 'user_list' %}" class="btn btn-info">Volver al Listado</a><br><br>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

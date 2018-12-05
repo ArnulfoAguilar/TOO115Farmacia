@@ -52,6 +52,9 @@ class User(AbstractUser):
     class Meta:
         db_table = 'USER'
 
+    def __str__(self):
+        return self.username
+
 #---------------------------------------------------------------------------------------------------------------
 class Descuento(models.Model):
     id_descuento = models.AutoField(db_column='ID_DESCUENTO', primary_key=True)  # Field name made lowercase.
