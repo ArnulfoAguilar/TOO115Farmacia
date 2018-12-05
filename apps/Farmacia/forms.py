@@ -98,7 +98,7 @@ class DescuentoForm(forms.ModelForm):
 
             'nombre' : forms.TextInput(attrs={'class':'form-control', "required": True}) ,
             'field_desc' : forms.NumberInput(attrs={'class':'form-control', "required": True}),
-            'fecha_inicio' : forms.DateInput(attrs={'class':'form-control', "required": True}) ,
-            'fecha_fin' : forms.DateInput(attrs={'class':'form-control', "required": True}),
+            'fecha_inicio' : forms.DateInput(attrs={'class':'form-control', "required": True, "type":"date"}),
+            'fecha_fin' : forms.DateInput(attrs={'class':'form-control', "required": True, "type":"date"}),
           
         }
