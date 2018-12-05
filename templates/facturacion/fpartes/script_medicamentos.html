@@ -81,5 +81,7 @@ function eliminarMedicamento(id){
 function clearTablaMedicamentos(){
     tabla = $('#tablaVentas > tbody#lineaDeVenta > tr');
     tabla.remove();
+    total = $('#tablaVentas > tfoot > tr > td.totalVenta');
+    total.child().remove();
 }
 </script>

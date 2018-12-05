@@ -237,7 +237,7 @@ def UserListView(request):
 def UserListView2(request):
     queryse= User.objects.filter(id_rol=4,id_empresa=request.user.id_empresa)
     contexto={'users':queryse}
-    return render(request,'user/user_list.html',contexto)
+    return render(request,'user/user2_list.html',contexto)
 
 #JUANJO:crear nuevo usuario
 def UserCreate(request):

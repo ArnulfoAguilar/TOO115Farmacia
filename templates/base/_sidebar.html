@@ -94,6 +94,7 @@
                         </ul>
                     </li>
                      <!--juanjo-->
+                {% if request.user.is_superuser %}
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-user"></i> <span>Gestion de Usuarios</span>
@@ -110,6 +111,8 @@
                     </ul>
 
                 </li>
+                {% else %}
+                {% endif %}
                 <!--juanjo end-->
             {% endblock nav_links %}
             {% endblock nav_links_outer %}
