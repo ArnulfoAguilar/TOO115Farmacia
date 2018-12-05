@@ -61,6 +61,10 @@
 
                             </ul>
                         </li>
+                    {% else %}
+                        <li class="user">
+                            <a href="{% url 'login' %}" class="btn btn-success">Iniciar Sesion</a>
+                        </li>
                     {% endif %}
                 {% endblock header_dropdowns %}
             </ul>
